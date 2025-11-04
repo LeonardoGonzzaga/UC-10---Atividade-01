@@ -1,0 +1,120 @@
+/* --- Estilização da Seção Principal --- */
+.jogos-promocao-section {
+    max-width: 1200px;
+    margin: 40px auto; /* Centraliza a seção e adiciona margem */
+    padding: 0 20px;
+    text-align: center;
+}
+
+.jogos-promocao-section h2 {
+    margin-bottom: 30px;
+    font-size: 2em;
+    color: #333;
+}
+
+/* --- Layout da Grade (Grid Layout) --- */
+.card-grid {
+    display: grid;
+    /* Define 3 colunas de tamanho igual com espaçamento de 20px */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 20px;
+}
+
+/* --- Estilização do Card Individual --- */
+.jogo-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Garante que a imagem respeite o border-radius */
+    display: flex; /* Permite que o conteúdo interno seja flexível */
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: left;
+}
+
+.jogo-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* --- Imagem do Card --- */
+.card-image-container {
+    height: 200px; /* Altura fixa para a imagem */
+    width: 100%;
+    overflow: hidden;
+}
+
+.card-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Garante que a imagem preencha sem distorcer */
+}
+
+/* --- Conteúdo do Card --- */
+.card-content {
+    padding: 15px;
+    flex-grow: 1; /* Garante que o conteúdo ocupe o espaço restante */
+    display: flex;
+    flex-direction: column;
+}
+
+.card-title {
+    font-size: 1.4em;
+    margin-top: 0;
+    margin-bottom: 5px;
+    color: #007bff; /* Cor de destaque */
+}
+
+.card-description {
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 15px;
+    flex-grow: 1; /* Empurra as ações para baixo */
+}
+
+/* --- Ações e Preço --- */
+.card-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+}
+
+.preco {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #28a745; /* Cor verde para o preço */
+    margin: 0;
+}
+
+.botao-comprar {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.botao-comprar:hover {
+    background-color: #0056b3;
+}
+
+/* --- Responsividade (Para dispositivos menores) --- */
+@media (max-width: 900px) {
+    .card-grid {
+        /* Muda para 2 colunas em telas médias */
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .card-grid {
+        /* Muda para 1 coluna em telas pequenas */
+        grid-template-columns: 1fr;
+    }
+}

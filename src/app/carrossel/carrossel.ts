@@ -2,14 +2,15 @@ import {
   Component, 
   OnInit, 
   ElementRef, 
-  ViewChildren, 
-  QueryList, 
-  AfterViewInit 
+  ViewChild, 
+  AfterViewInit,
+  OnDestroy 
 } from '@angular/core';
+
 import { CommonModule } from '@angular/common'; 
 
 interface slide {
-  src: string; 
+  src: string;
   alt: string;
 }
 
@@ -20,9 +21,9 @@ interface slide {
   templateUrl: './carrossel.html',
   styleUrl: './carrossel.css',
 })
-export class Carrossel implements OnInit, AfterViewInit {
+export class Carrossel implements OnInit, AfterViewInit, OnDestroy { 
 
-  slide = [
+  slide: slide[] = [ 
     { src: "https://i.imgur.com/6XGIfTJ.jpeg", alt: 'Promoção de um jogo' },
     { src: "https://i.imgur.com/Un857fa.jpeg", alt: 'Promoção do mês' },
     { src: "https://i.imgur.com/50SVSXK.jpeg", alt: 'Jogo do ano' }
@@ -30,48 +31,83 @@ export class Carrossel implements OnInit, AfterViewInit {
   
   currentIndex: number = 0;
   totalItems: number = this.slide.length;
+  
+  private intervalId: any; 
+  private readonly AUTO_PLAY_INTERVAL = 5000; // 5 segundos
 
-  // O nome da propriedade no ViewChildren deve corresponder ao # do template
-  @ViewChildren('carouselTrack') carouselTrack!: QueryList<ElementRef>;
+  // ViewChild para acessar a div do carrossel no HTML
+  @ViewChild('carouselTrack') carouselTrack!: ElementRef;
   
   constructor() { }
 
   ngOnInit(): void {
-    // Inicializa o carrossel se precisar de alguma lógica inicial
+    this.startAutoPlay();
   }
 
   ngAfterViewInit(): void {
-    // Certifica-se de que o track está visível antes de aplicar o estilo inicial
+    // Garante que o track esteja na posição 0 ao carregar
     this.updateCarousel();
   }
 
+  ngOnDestroy(): void {
+    this.stopAutoPlay();
+  }
+
+  // Métodos de Controle do Timer
+
+  private startAutoPlay(): void {
+    // Usa setInterval para chamar a função nextSlide
+    this.intervalId = setInterval(() => {
+      // Passa 'false' para o timer não resetar o próprio loop
+      this.advanceSlide(false); 
+    }, this.AUTO_PLAY_INTERVAL);
+  }
+
+  private stopAutoPlay(): void {
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+    }
+  }
+  
+  private resetAutoPlay(): void {
+    this.stopAutoPlay();
+    this.startAutoPlay();
+  }
+  
   /**
-   * Navega para o slide anterior.
+   * Função interna que avança o slide e é chamada pelo timer ou interação.
+   * @param isUserInteraction Indica se a chamada foi por clique do usuário (true) ou pelo timer (false).
    */
+  private advanceSlide(isUserInteraction: boolean): void {
+      if (isUserInteraction) {
+          this.resetAutoPlay(); // Reseta apenas se o usuário clicou
+      }
+
+      this.currentIndex = (this.currentIndex === this.totalItems - 1) 
+        ? 0 
+        : this.currentIndex + 1;
+      this.updateCarousel();
+  }
+
+  // Funções de Navegação Públicas (para o HTML)
+
   prevSlide(): void {
-    // Se estiver no primeiro, vai para o último. Senão, vai para o anterior.
+    this.resetAutoPlay();
+    
     this.currentIndex = (this.currentIndex === 0) 
       ? this.totalItems - 1 
       : this.currentIndex - 1;
     this.updateCarousel();
   }
 
-  /**
-   * Navega para o próximo slide.
-   */
+  // O nextSlide agora chama a função advanceSlide com a interação do usuário.
   nextSlide(): void {
-    // Se estiver no último, volta para o primeiro. Senão, vai para o próximo.
-    this.currentIndex = (this.currentIndex === this.totalItems - 1) 
-      ? 0 
-      : this.currentIndex + 1;
-    this.updateCarousel();
+    this.advanceSlide(true); 
   }
 
-  /**
-   * Navega para um slide específico usando o indicador.
-   * @param index O índice do slide desejado.
-   */
   goToSlide(index: number): void {
+    this.resetAutoPlay();
+    
     this.currentIndex = index;
     this.updateCarousel();
   }
@@ -80,11 +116,10 @@ export class Carrossel implements OnInit, AfterViewInit {
    * Aplica a transformação CSS para mover o carrossel.
    */
   updateCarousel(): void {
-    // Garante que o track foi encontrado antes de tentar manipulá-lo
-    if (this.carouselTrack && this.carouselTrack.first) {
-        const trackElement = this.carouselTrack.first.nativeElement as HTMLElement;
-        // Move o track horizontalmente pela porcentagem do índice atual
+    // CORREÇÃO ESSENCIAL: Com ViewChild, acessamos o elemento via .nativeElement
+    if (this.carouselTrack) {
+        const trackElement = this.carouselTrack.nativeElement as HTMLElement;
         trackElement.style.transform = `translateX(-${this.currentIndex * 100}%)`;
     }
-  }
+}
 }

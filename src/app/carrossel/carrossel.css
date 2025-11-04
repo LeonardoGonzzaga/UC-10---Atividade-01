@@ -2,41 +2,45 @@
 #custom-carousel-section {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px 0; /* Espaçamento acima e abaixo do carrossel */
+    padding: 20px 0;
 }
 
 .custom-carousel-container {
     position: relative;
-    overflow: hidden; /* Oculta os itens que estão fora da visualização */
+    overflow: hidden; 
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-    height: 450px; /* <--- Ajuste esta altura conforme desejado */
+    height: 450px; /* Altura de referência */
     width: 100%; 
 }
 
 /* O "track" que contém todos os slides e se move horizontalmente */
 .custom-carousel-track {
-    display: flex; /* Coloca os itens lado a lado */
-    transition: transform 0.6s ease-in-out; /* Animação suave na troca de slide */
-    height: 100%; /* O track também deve ter 100% da altura do container */
+    display: flex; 
+    transition: transform 0.6s ease-in-out; 
+    height: 100%; 
+    
+    /* CORREÇÃO ADICIONAL: Garante que os filhos preencham a altura de forma flexível */
+    align-items: stretch;
 }
 
 .custom-carousel-item {
-    min-width: 100%; /* Cada item ocupa 100% da largura do container */
-    flex-shrink: 0; /* Impede que os itens encolham */
-    height: 100%; /* <--- CORREÇÃO: Item com 100% da altura do track */
-    opacity: 1; 
+    min-width: 100%; 
+    flex-shrink: 0; 
+    height: 100%; 
+    
 }
 
 .custom-carousel-item img {
     width: 100%;
-    height: 100%; /* <--- CORREÇÃO: Imagem com 100% da altura do seu item */
+    height: 100%; 
     display: block; 
-    object-fit: cover; /* <--- ESSENCIAL: Garante que a imagem cubra o espaço mantendo a proporção */
-    object-position: center; /* <--- Opcional: Centraliza a imagem no slide */
+    object-fit: cover; 
+    object-position: center; 
 }
 
 /* --- Estilização dos Controles (Botões de Navegação) --- */
+/* (O restante do código de controles e indicadores permanece o mesmo) */
 .custom-carousel-control {
     position: absolute;
     top: 50%;
@@ -102,7 +106,7 @@
 /* Responsividade básica para telas menores */
 @media (max-width: 768px) {
     .custom-carousel-container {
-        height: 300px; /* <--- Ajuste a altura para telas menores */
+        height: 300px;
     }
     .custom-carousel-control {
         padding: 10px 8px;
