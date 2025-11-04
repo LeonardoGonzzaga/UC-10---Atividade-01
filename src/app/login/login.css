@@ -1,0 +1,125 @@
+.login-page-container {
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: flex-start; /* Alinha ao topo (ou 'center' se quiser centralizar totalmente) */
+    min-height: 100vh; /* Ocupa a altura total da tela */
+    padding: 40px 15px;
+    background-color: #acd1f0;
+}
+
+.form-wrapper {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px; /* Limita a largura do formulário em telas grandes */
+}
+
+/* Estilo dos Rótulos (Labels) */
+.auth-form label:not(.checkbox-group label) {
+    display: block; /* Garante que cada label ocupe uma linha */
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #000000;
+    font-size: 0.95em;
+}
+
+/* Estilo dos Campos de Input (Responsivos) */
+.auth-form input[type="email"],
+.auth-form input[type="password"],
+.auth-form input[type="text"] {
+    width: 100%; 
+    padding: 10px;
+    border: 1px solid #1a0579;
+    border-radius: 5px;
+    box-sizing: border-box; 
+}
+/* Botões de Ação */
+
+.submit-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #010050;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    cursor: pointer;
+    margin-top: 25px;
+    transition: background-color 0.2s;
+}
+
+/* Link "Esqueci a Senha" */
+.forgot-password {
+    display: block;
+    text-align: right;
+    margin-top: 10px;
+    color: #000000;
+    text-decoration: none;
+    font-size: 1.1em;
+    padding: 4px;
+}
+
+/* Checkbox de Termos */
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+.checkbox-group label {
+    margin-left: 10px;
+    font-weight: normal;
+    font-size: 0.9em;
+}
+
+
+/* ==================================== */
+/* 7. ESTILOS DE ABAS (LOGIN/CADASTRO) - CSS PURO */
+/* ==================================== */
+
+/* Oculta os inputs de rádio (o controle das abas) */
+input[type="radio"][name="tab-control"] {
+    display: none;
+}
+
+.tab-toggles {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.tab-label {
+    flex-grow: 1;
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #aaa;
+    border-bottom: 2px solid #ddd;
+    transition: color 0.3s;
+}
+
+/* Garante que o painel de abas mostre apenas uma por vez */
+.tab-pane {
+    display: none;
+}
+
+/* Estilo de ABA ATIVA */
+/* Se a tab-login estiver marcada, mostre o painel de login e destaque o rótulo */
+#tab-login:checked ~ .tab-toggles label[for="tab-login"],
+#tab-cadastro:checked ~ .tab-toggles label[for="tab-cadastro"] {
+    color: #031c6d;
+    border-bottom: 3px solid #031c6d;
+}
+
+/* MOSTRA O CONTEÚDO DA ABA ATIVA */
+/* Se a tab-login estiver marcada, mostre o div com id="login" */
+#tab-login:checked ~ .tab-content #login {
+    display: block;
+}
+
+/* Se a tab-cadastro estiver marcada, mostre o div com id="cadastro" */
+#tab-cadastro:checked ~ .tab-content #cadastro {
+    display: block;
+}

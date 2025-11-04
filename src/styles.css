@@ -1,1 +1,48 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Arial', 'sans-serif';
+    line-height: 1.5;
+}
+
+img {
+    max-width: 100%; 
+    height: auto; 
+    display: block;
+}
+
+
+.section-title {
+    background-color: #362A9D;
+    color: rgb(235, 235, 235);
+    padding: 10px 20px;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+.section-title.secondary {
+    background-color: #362A9D;
+    color: rgb(235, 235, 235);
+}
+
+.main-content .products-in-trend .section-title{
+    color: rgb(235, 235, 235);
+}
+
+.rodape {
+    align-items: center;
+    color: #e70000;
+    font-style: italic;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 80px;
+}
+
+.main-content {
+    max-width: 1600px;
+    margin: 20px auto;
+    padding: 0 15px; 
+}
+

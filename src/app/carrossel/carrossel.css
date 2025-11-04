@@ -1,0 +1,116 @@
+/* --- Estilização da Seção do Carrossel --- */
+#custom-carousel-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0; /* Espaçamento acima e abaixo do carrossel */
+}
+
+.custom-carousel-container {
+    position: relative;
+    overflow: hidden; /* Oculta os itens que estão fora da visualização */
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* O "track" que contém todos os slides e se move horizontalmente */
+.custom-carousel-track {
+    display: flex; /* Coloca os itens lado a lado */
+    transition: transform 0.6s ease-in-out; /* Animação suave na troca de slide */
+}
+
+.custom-carousel-item {
+    min-width: 100%; /* Cada item ocupa 100% da largura do container */
+    flex-shrink: 0; /* Impede que os itens encolham */
+    /* Usaremos a visibilidade do item através da posição do track (transform: translateX) */
+    opacity: 1; /* Mantemos a opacidade total */
+}
+
+.custom-carousel-item img {
+    width: 100%;
+    height: auto; 
+    display: block; 
+    min-height: 350px; 
+    object-fit: cover; 
+}
+
+/* --- Estilização dos Controles (Botões de Navegação) --- */
+.custom-carousel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5); 
+    color: white;
+    border: none;
+    padding: 15px 10px;
+    cursor: pointer;
+    font-size: 2rem;
+    line-height: 1; 
+    border-radius: 4px;
+    z-index: 10; 
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    user-select: none; 
+}
+
+.custom-carousel-control:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+    transform: translateY(-50%) scale(1.1); 
+}
+
+.custom-carousel-control.prev {
+    left: 10px;
+}
+
+.custom-carousel-control.next {
+    right: 10px;
+}
+
+/* --- Estilização dos Indicadores --- */
+.custom-carousel-indicators {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px; 
+    z-index: 10;
+}
+
+.custom-carousel-indicator {
+    width: 12px;
+    height: 12px;
+    background-color: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 50%; 
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    padding: 0; 
+}
+
+.custom-carousel-indicator.active {
+    background-color: #007bff; 
+    border-color: #007bff;
+    transform: scale(1.2); 
+}
+
+.custom-carousel-indicator:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+/* Responsividade básica para telas menores */
+@media (max-width: 768px) {
+    .custom-carousel-item img {
+        min-height: 250px;
+    }
+    .custom-carousel-control {
+        padding: 10px 8px;
+        font-size: 1.5rem;
+    }
+    .custom-carousel-indicators {
+        bottom: 10px;
+        gap: 6px;
+    }
+    .custom-carousel-indicator {
+        width: 10px;
+        height: 10px;
+    }
+}

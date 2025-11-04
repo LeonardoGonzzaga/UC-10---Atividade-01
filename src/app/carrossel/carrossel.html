@@ -1,0 +1,29 @@
+<section id="custom-carousel-section">
+    <div class="custom-carousel-container">
+
+        <div class="custom-carousel-track" #carouselTrack>
+            <div class="custom-carousel-item" 
+                 *ngFor="let slide of slides; let i = index"
+                 [ngClass]="{'active': i === currentIndex}">
+                
+                <img [src]="slide.src" [alt]="slide.alt">
+            </div>
+        </div>
+
+        <button class="custom-carousel-control prev" (click)="prevSlide()" aria-label="Previous image">
+            &#10094;
+        </button>
+        <button class="custom-carousel-control next" (click)="nextSlide()" aria-label="Next image">
+            &#10095;
+        </button>
+
+        <div class="custom-carousel-indicators">
+            <button class="custom-carousel-indicator"
+                    *ngFor="let slide of slides; let i = index"
+                    [ngClass]="{'active': i === currentIndex}"
+                    (click)="goToSlide(i)"
+                    [attr.aria-label]="'Go to slide ' + (i + 1)">
+            </button>
+        </div>
+    </div>
+</section>

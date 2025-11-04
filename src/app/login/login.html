@@ -1,0 +1,54 @@
+  <main class="login-page-container">
+        <div class="form-wrapper">
+            <input type="radio" id="tab-login" name="tab-control" checked>
+            <input type="radio" id="tab-cadastro" name="tab-control">
+            
+            <div class="tab-toggles">
+                <label for="tab-login" class="tab-label">Entrar</label>
+                <label for="tab-cadastro" class="tab-label">Cadastre-se</label>
+            </div>
+            <div class="tab-content">
+
+                <div id="login" class="tab-pane">
+                    <form class="auth-form">
+                        
+                        <label for="login-email">E-mail</label>
+                        <input type="email" id="login-email" name="login-email" placeholder="seu.email@exemplo.com" required>
+
+                        <label for="login-senha">Senha</label>
+                        <input type="password" id="login-senha" name="login-senha" placeholder="Mínimo 8 caracteres" required minlength="8">
+                        
+                        <button type="submit" class="submit-btn">Entrar</button>
+
+                        <a href="#" class="forgot-password">Esqueci minha senha</a>
+                    </form>
+                </div>
+
+                <div id="cadastro" class="tab-pane">
+                    <form class="auth-form">
+
+                        <label for="cad-nome">Nome Completo</label>
+                        <input type="text" id="cad-nome" name="cad-nome" placeholder="Seu nome" required>
+                        
+                        <label for="cad-email">E-mail</label>
+                        <input type="email" id="cad-email" name="cad-email" placeholder="seu.email@exemplo.com" required>
+
+                        <label for="cad-senha">Crie uma Senha</label>
+                        <input type="password" id="cad-senha" name="cad-senha" placeholder="Mínimo 8 caracteres" required minlength="8">
+                        
+                        <label for="cad-confirma">Confirme a Senha</label>
+                        <input type="password" id="cad-confirma" name="cad-confirma" required>
+
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="termos" name="termos" required>
+                            <label for="termos">Eu concordo com os <a href="termos.html">Termos de Serviço</a></label>
+                        </div>
+
+                        <button type="submit" class="submit-btn register-btn">Cadastrar</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
