@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common'; 
 
-interface slides {
+interface slide {
   src: string; 
   alt: string;
 }
@@ -22,14 +22,14 @@ interface slides {
 })
 export class Carrossel implements OnInit, AfterViewInit {
 
-  slides = [
-    { src: "./img/foto1.jpg", alt: 'Promoção de um jogo' },
-    { src: './assets/img/banner2.PNG', alt: 'Promoção do mês' },
-    { src: './assets/img/banner3.PNG', alt: 'Jogo do ano' }
+  slide = [
+    { src: "https://i.imgur.com/6XGIfTJ.jpeg", alt: 'Promoção de um jogo' },
+    { src: "https://i.imgur.com/Un857fa.jpeg", alt: 'Promoção do mês' },
+    { src: "https://i.imgur.com/50SVSXK.jpeg", alt: 'Jogo do ano' }
   ];
   
   currentIndex: number = 0;
-  totalItems: number = this.slides.length;
+  totalItems: number = this.slide.length;
 
   // O nome da propriedade no ViewChildren deve corresponder ao # do template
   @ViewChildren('carouselTrack') carouselTrack!: QueryList<ElementRef>;

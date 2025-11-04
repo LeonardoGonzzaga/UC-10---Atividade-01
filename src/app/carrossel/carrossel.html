@@ -3,7 +3,7 @@
 
         <div class="custom-carousel-track" #carouselTrack>
             <div class="custom-carousel-item" 
-                 *ngFor="let slide of slides; let i = index"
+                 *ngFor="let slide of slide; let i = index"
                  [ngClass]="{'active': i === currentIndex}">
                 
                 <img [src]="slide.src" [alt]="slide.alt">
@@ -19,7 +19,7 @@
 
         <div class="custom-carousel-indicators">
             <button class="custom-carousel-indicator"
-                    *ngFor="let slide of slides; let i = index"
+                    *ngFor="let slide of slide; let i = index"
                     [ngClass]="{'active': i === currentIndex}"
                     (click)="goToSlide(i)"
                     [attr.aria-label]="'Go to slide ' + (i + 1)">
