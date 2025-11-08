@@ -3,62 +3,24 @@
     
     <div class="card-grid">
         
-        <div class="jogo-card">
+        <div class="jogo-card" *ngFor="let jogo of listaJogos">
             <div class="card-image-container">
-                <img src="https://image.ceneostatic.pl/data/products/47567219/p-alien-isolation-collection-digital.jpg" alt="Jogo 1">
+                <img [src]="jogo.imagemUrl" [alt]="jogo.nome"> 
             </div>
             
             <div class="card-content">
-                <h3 class="card-title">Alien Isolation Collection - Versão Digital</h3>
+                <h3 class="card-title">{{ jogo.nome }}</h3>
                 
                 <p class="card-description">
-                    Descobre o verdadeiro significado do medo no Alien: Isolation, um survival horror localizado numa atmosfera de terror constante e perigo mortal. Quinze anos após os acontecimentos de Alien™ , Amanda, a filha de Ellen Ripley, enceta uma batalha desesperada pela sobrevivência numa missão para descobrir a verdade acerca do desaparecimento da sua mãe.
+                    {{ jogo.descricao }}
                 </p>
 
                 <div class="card-actions">
-                    <p class="preco">R$ 240,00</p>
+                    <p class="preco">{{ jogo.preco | currency: 'BRL' }}</p>
                     <button class="botao-comprar">Comprar</button>
                 </div>
             </div>
         </div>
-        
-        <div class="jogo-card">
-            <div class="card-image-container">
-                <img src="https://wallpapers.com/images/hd/red-dead-redemtion-2-r0xtdcm9wnjehsrl.jpg" alt="Jogo 2">
-            </div>
-            
-            <div class="card-content">
-                <h3 class="card-title">Red Dead Redemption II - Versão Digital</h3>
-                
-                <p class="card-description">
-                    Estados Unidos, 1899. Arthur Morgan e a gangue Van der Linde são bandidos em fuga. Com agentes federais e os melhores caçadores de recompensa no seu encalço, a gangue precisa roubar, assaltar e lutar para sobreviver no impiedoso coração dos Estados Unidos. Conforme divisões internas profundas ameaçam despedaçar a gangue, Arthur deve fazer uma escolha entre os seus próprios ideais e a lealdade à gangue que o criou.
-                </p>
-                
-                <div class="card-actions">
-                    <p class="preco">R$ 299,90</p>
-                    <button class="botao-comprar">Comprar</button>
-                </div>
-            </div>
+
         </div>
-        
-        <div class="jogo-card">
-            <div class="card-image-container">
-                <img src="https://obarrete.com/wp-content/uploads/2022/08/capa-e1659890702391.jpg" alt="Jogo 3">
-            </div>
-            
-            <div class="card-content">
-                <h3 class="card-title">It Takes Two</h3>
-                
-                <p class="card-description">
-                    Embarque na jornada mais maluca da sua vida em It Takes Two, uma aventura de plataforma inovadora criada exclusivamente para o jogo co-op. Convide um amigo ou amiga para se juntar de graça com o Passe de Amigo* e trabalhem juntos em uma variedade de desafios deliciosamente perturbadores. Jogue no papel do conflituoso casal Cody e May, dois humanos transformados em bonecos por um feitiço. Juntos, presos em um mundo fantástico onde o imprevisível está sempre à espreita, são obrigados a trabalhar para salvar seu relacionamento conturbado.
-                </p>
-                
-                <div class="card-actions">
-                    <p class="preco">R$ 199,00</p>
-                    <button class="botao-comprar">Comprar</button>
-                </div>
-            </div>
-        </div>
-        
-    </div>
 </section>

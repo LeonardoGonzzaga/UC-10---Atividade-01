@@ -24,7 +24,7 @@ interface slide {
 export class Carrossel implements OnInit, AfterViewInit, OnDestroy { 
 
   slide: slide[] = [ 
-    { src: "https://i.imgur.com/6XGIfTJ.jpeg", alt: 'Promoção de um jogo' },
+    { src: "https://i.imgur.com/6XGIfTJ.jpeg", alt: 'Promoção de um jogo', },
     { src: "https://i.imgur.com/Un857fa.jpeg", alt: 'Promoção do mês' },
     { src: "https://i.imgur.com/50SVSXK.jpeg", alt: 'Jogo do ano' }
   ];
@@ -33,7 +33,7 @@ export class Carrossel implements OnInit, AfterViewInit, OnDestroy {
   totalItems: number = this.slide.length;
   
   private intervalId: any; 
-  private readonly AUTO_PLAY_INTERVAL = 5000; // 5 segundos
+  private readonly AUTO_PLAY_INTERVAL = 6000; 
 
   // ViewChild para acessar a div do carrossel no HTML
   @ViewChild('carouselTrack') carouselTrack!: ElementRef;
@@ -45,7 +45,7 @@ export class Carrossel implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
-    // Garante que o track esteja na posição 0 ao carregar
+   
     this.updateCarousel();
   }
 
@@ -116,7 +116,7 @@ export class Carrossel implements OnInit, AfterViewInit, OnDestroy {
    * Aplica a transformação CSS para mover o carrossel.
    */
   updateCarousel(): void {
-    // CORREÇÃO ESSENCIAL: Com ViewChild, acessamos o elemento via .nativeElement
+    
     if (this.carouselTrack) {
         const trackElement = this.carouselTrack.nativeElement as HTMLElement;
         trackElement.style.transform = `translateX(-${this.currentIndex * 100}%)`;

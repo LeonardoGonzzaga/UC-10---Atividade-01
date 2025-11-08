@@ -1,0 +1,111 @@
+/* Cores baseadas no layout do cabeçalho */
+:root {
+    --color-primary: #85a9ff; /* Um azul mais claro, similar ao do header */
+    --color-secondary: #007bff; /* Um azul padrão para botões */
+    --color-background: #f4f7f9; /* Fundo levemente cinza */
+    --color-text: #333;
+    --color-white: #fff;
+    --color-success: #28a745;
+    --color-danger: #dc3545;
+}
+
+.cadastro-container {
+    max-width: 800px;
+    margin: 40px auto; /* Centraliza horizontalmente e adiciona margem vertical */
+    padding: 30px;
+    background-color: var(--color-white);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    font-family: Arial, sans-serif;
+}
+
+h2 {
+    text-align: center;
+    color: var(--color-primary);
+    margin-bottom: 30px;
+    font-weight: 700;
+}
+
+/* Estilização dos campos de formulário */
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box; /* Garante que padding não aumente a largura total */
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-control:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 0.2rem rgba(133, 169, 255, 0.25);
+    outline: none;
+}
+
+/* Estilização do botão de Cadastro */
+.btn-cadastrar {
+    display: block;
+    width: 100%;
+    padding: 12px 20px;
+    background-color: var(--color-secondary);
+    color: var(--color-white);
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s, opacity 0.3s;
+    margin-top: 20px;
+}
+
+.btn-cadastrar:hover:not([disabled]) {
+    background-color: #0056b3;
+}
+
+.btn-cadastrar[disabled] {
+    background-color: #a0a0a0;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* Estilização das mensagens (sucesso/erro) */
+.alerta {
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 25px;
+    text-align: center;
+    font-weight: 600;
+}
+
+/* Para mensagens de sucesso */
+.alerta.sucesso {
+    background-color: #d4edda;
+    color: var(--color-success);
+    border: 1px solid #c3e6cb;
+}
+
+/* Para mensagens de erro (opcional, mas bom ter) */
+.alerta.erro {
+    background-color: #f8d7da;
+    color: var(--color-danger);
+    border: 1px solid #f5c6cb;
+}
+
+/* Responsive: Ajustes para telas menores */
+@media (max-width: 600px) {
+    .cadastro-container {
+        margin: 20px;
+        padding: 20px;
+    }
+}

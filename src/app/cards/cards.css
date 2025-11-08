@@ -56,6 +56,7 @@
     flex-grow: 1; /* Garante que o conteúdo ocupe o espaço restante */
     display: flex;
     flex-direction: column;
+    border: #2216ce 1px solid;
 }
 
 .card-title {
