@@ -29,13 +29,6 @@
       "imagemUrl": "https://cdn1.epicgames.com/spt-assets/2aeeb3d8063347f1a3d77bbc1a838c90/the-talos-principle-2-9q0ci.jpg?resize=1&w=480&h=270&quality=medium"
     },
     {
-      "id": 6,
-      "nome": "Battlefield 6 ",
-      "descricao": "A experiência da guerra total definitiva. Em uma guerra de tanques, jatos e enormes arsenais de combate, seu pelotão é a arma mais mortal.",
-      "preco": 299,
-      "imagemUrl": "https://i.redd.it/unofficial-battlefield-6-cover-art-wallpapers-3840x2160-v0-q96931onvgef1.png?width=3840&format=png&auto=webp&s=68fe2062e3ee7d1c151237f187c44658cd017e16"
-    },
-    {
       "id": 7,
       "nome": "Sea of Thieves",
       "descricao": "Sea of Thieves é um jogo de aventura pirata de sucesso, que oferece a experiência de pilhar tesouros perdidos, fazer parte de batalhas intensas, derrotar monstros marinhos e muito mais. Mergulhe nesta edição revisada do jogo, que inclui acesso a conteúdo digital bônus.",
@@ -48,6 +41,41 @@
       "descricao": "Naufragado. Capturado. Traído. E forçado a se apresentar para uma plateia de gatos? Sim, você vai vivenciar isso e muito mais quando desbloquear o BattleBlock Theater! Não há como voltar quando começar sua missão para libertar mais de 300 de seus amigos aprisionados pelos malignos gatos tecnológicos. Mergulhe neste conto surpreendente de traição enquanto usa seu arsenal de armas/ferramentas para abrir caminho por centenas de níveis, tudo para descobrir a verdade intrigante por trás do BattleBlock Theatre.",
       "preco": 27.99,
       "imagemUrl": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/238460/capsule_616x353.jpg?t=1733782954"
+    },
+    {
+      "id": 9,
+      "nome": "Call of Duty: Black Ops 7 - Edição Cofre",
+      "descricao": "Em Call of Duty®: Black Ops 7, a Treyarch e a Raven Software trazem aos jogadores o Black Ops mais alucinante de todos os tempos ao longo de uma Campanha Co-op inovadora, uma experiência Multijogador eletrizante e o lendário modo Zumbis por Rodada.",
+      "preco": 349.9,
+      "imagemUrl": "https://image.api.playstation.com/vulcan/ap/rnd/202508/2217/56ccd23faf844f2a2dbec73418bf311b422ef1186d231607.jpg"
+    },
+    {
+      "id": 10,
+      "nome": "Gris",
+      "descricao": "Gris é uma jovem esperançosa, perdida em seu próprio mundo, que lida com uma dolorosa experiência. Sua jornada pela tristeza se manifesta em seu vestido, que concede a ela novas habilidades para navegar melhor por sua realidade desbotada. Ao longo da história, Gris evolui emocionalmente e passa a ver o mundo de outra forma, revelando novos caminhos para explorar com o uso de suas novas habilidades.",
+      "preco": 46.99,
+      "imagemUrl": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/683320/capsule_616x353.jpg?t=1759429603"
+    },
+    {
+      "id": 11,
+      "nome": "Little Nightmares",
+      "descricao": "Mergulhe em Little Nightmares, um fantástico conto sombrio que o fará enfrentar seus medos de infância! Ajude Six a fugir de A Bocarra – um navio imenso e misterioso habitado por almas corrompidas que procuram sua próxima refeição. À medida que você progride na sua jornada, explore a mais perturbadora casa de bonecas como uma prisão para dela fugir e um parquinho cheio de segredos para se descobrir. Reconecte-se com sua criança interior para soltar a sua imaginação e encontrar a saída!",
+      "preco": 84.9,
+      "imagemUrl": "https://i.redd.it/every-cover-art-for-the-little-nightmares-games-v0-jl3r2kyy0f2c1.png?width=1920&format=png&auto=webp&s=7311873f183eb7f733f177846cee6e2354d9db05"
+    }
+  ],
+  "usuarios": [
+    {
+      "id": 1,
+      "nome": "Admin",
+      "email": "admin@exemplo.com",
+      "senha": "0"
+    },
+    {
+      "nome": "Leonardo",
+      "email": "leonardo_xtrao@hotmail.com",
+      "senha": "1a237895",
+      "id": 2
     }
   ]
 }

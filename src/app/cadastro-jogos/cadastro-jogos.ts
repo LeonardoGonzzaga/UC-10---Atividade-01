@@ -23,8 +23,6 @@ export class CadastroJogos implements OnInit {
   }
 
   public cadastrarJogo(): void {
-    // Remove o ID antes de enviar para garantir que o json-server gere um novo ID.
-    // O construtor exige um number, então enviamos 0, mas removemos ele antes do POST.
     const jogoParaEnviar = { ...this.novoJogo };
 
     this.jogoService.cadastrarJogo(jogoParaEnviar as Jogos).subscribe({

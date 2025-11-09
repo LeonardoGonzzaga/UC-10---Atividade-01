@@ -1,0 +1,126 @@
+<section class="gerenciar-container">
+    <h2>🛠️ Gerenciamento de Jogos</h2>
+
+    <div class="header-gerenciamento">
+        <div class="botoes-header">
+            <button class="btn btn-principal" routerLink="/cadastroJogos">
+                ➕ Ir para Cadastro de Jogos
+            </button>
+            <button class="btn btn-logout" (click)="logout()">
+                🚪 Logout
+            </button>
+        </div>
+    </div>
+    <div *ngIf="mensagem" class="alerta sucesso">{{ mensagem }}</div>
+
+    <div *ngIf="isLoading" class="alerta loading">Carregando lista de jogos...</div>
+
+    <div *ngIf="estaEditando" class="edicao-wrapper">
+        <h3 class="titulo-edicao">Editar Jogo ID: {{ jogoParaEditar.id }}</h3>
+
+        <form (ngSubmit)="salvarAtualizacao()">
+
+            <div class="form-group">
+                <label for="editNome">Nome do Jogo:</label>
+                <input 
+                    id="editNome" 
+                    name="editNome"
+                    type="text" 
+                    class="form-control"
+                    [(ngModel)]="jogoParaEditar.nome" 
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label for="editDescricao">Descrição:</label>
+                <textarea 
+                    id="editDescricao" 
+                    name="editDescricao"
+                    class="form-control"
+                    rows="4"
+                    [(ngModel)]="jogoParaEditar.descricao" 
+                    required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="editPreco">Preço (R$):</label>
+                <input 
+                    id="editPreco" 
+                    name="editPreco"
+                    type="number" 
+                    class="form-control"
+                    step="0.01" 
+                    min="0"
+                    [(ngModel)]="jogoParaEditar.preco" 
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label for="editImagemUrl">URL da Imagem:</label>
+                <input 
+                    id="editImagemUrl" 
+                    name="editImagemUrl"
+                    type="text" 
+                    class="form-control"
+                    [(ngModel)]="jogoParaEditar.imagemUrl" 
+                    required>
+            </div>
+            
+            <div class="image-preview-container" *ngIf="jogoParaEditar.imagemUrl">
+                 <img [src]="jogoParaEditar.imagemUrl" alt="Prévia da Imagem" class="image-preview-edicao">
+            </div>
+
+            <div class="botoes-edicao">
+                <button type="submit" class="btn btn-salvar" [disabled]="!jogoParaEditar.nome || !jogoParaEditar.preco">
+                    Salvar Alterações
+                </button>
+                <button type="button" (click)="cancelarEdicao()" class="btn btn-cancelar">
+                    Cancelar
+                </button>
+            </div>
+
+        </form>
+    </div>
+
+    <div *ngIf="!isLoading && !estaEditando">
+        
+        <div *ngIf="listaJogos.length > 0" class="tabela-wrapper">
+            <table class="tabela-jogos">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome do Jogo</th>
+                        <th>Preço</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let jogo of listaJogos">
+                        <td>{{ jogo.id }}</td>
+                        <td>{{ jogo.nome }}</td>
+                        <td>{{ jogo.preco | currency: 'BRL' }}</td>
+                        <td class="acoes-coluna">
+                            <button 
+                                (click)="iniciarEdicao(jogo)" 
+                                class="btn btn-editar" 
+                                title="Editar Jogo">
+                                Editar
+                            </button>
+                            
+                            <button 
+                                (click)="excluirJogo(jogo)" 
+                                class="btn btn-excluir" 
+                                title="Excluir Jogo">
+                                Excluir
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div *ngIf="listaJogos.length === 0" class="alerta informacao">
+            Nenhum jogo encontrado na base de dados.
+        </div>
+    </div>
+</section>

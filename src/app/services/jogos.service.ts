@@ -20,9 +20,9 @@ export class JogoService {
     return this.httpClient.post<Jogos>(this.apiUrl, jogo); 
   }
 
-  public getJogo(id: number): Observable<Jogos[]> { 
-    const urlListarUm = `${this.apiUrl}?id=${id}`;
-    return this.httpClient.get<Jogos[]>(urlListarUm);
+  public getJogo(id: number): Observable<Jogos> { 
+    const urlListarUm = `${this.apiUrl}/${id}`; 
+    return this.httpClient.get<Jogos>(urlListarUm); 
   }
   
   public atualizarJogo(id: number, jogo: Jogos): Observable<Jogos> { 

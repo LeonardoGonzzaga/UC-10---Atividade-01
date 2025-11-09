@@ -1,0 +1,221 @@
+.gerenciar-container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+.header-gerenciamento {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 25px;
+}
+
+.botoes-header {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-logout {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-logout:hover {
+    background-color: #c82333;
+}
+
+.btn-principal {
+    background-color: #007bff; /* Cor primária, similar ao cabeçalho */
+    color: white;
+    padding: 10px 15px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 6px;
+    text-decoration: none; /* Garante que não tenha sublinhado se fosse um link */
+    transition: background-color 0.2s;
+}
+
+.btn-principal:hover {
+    background-color: #0056b3;
+}
+
+h2 {
+    color: #002d5a; /* Azul Principal */
+    text-align: center;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #e0f7ff;
+    padding-bottom: 10px;
+}
+
+/* Tabela */
+.tabela-wrapper {
+    overflow-x: auto; /* Garante scroll em telas pequenas */
+}
+
+.tabela-jogos {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.tabela-jogos th, .tabela-jogos td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.tabela-jogos th {
+    background-color: #f8f8f8;
+    color: #333;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.tabela-jogos tbody tr:hover {
+    background-color: #f5f5f5;
+}
+
+/* Coluna de Ações */
+.acoes-coluna {
+    width: 1%; /* Garante que a coluna não ocupe espaço desnecessário */
+    white-space: nowrap; /* Evita que os botões quebrem a linha */
+}
+
+/* Botões de Ação */
+.btn {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    margin-right: 8px;
+    transition: background-color 0.2s;
+}
+
+.btn-editar {
+    background-color: #ffc107; /* Amarelo */
+    color: #333;
+}
+
+.btn-editar:hover {
+    background-color: #e0a800;
+}
+
+.btn-excluir {
+    background-color: #dc3545; /* Vermelho */
+    color: white;
+}
+
+.btn-excluir:hover {
+    background-color: #c82333;
+}
+
+/* Mensagens de Alerta */
+.alerta {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.alerta.sucesso {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.alerta.loading {
+    background-color: #e0f7ff;
+    color: #007bff;
+    border: 1px solid #99d9ea;
+    text-align: center;
+}
+
+.alerta.informacao {
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeeba;
+    text-align: center;
+}
+
+/* Formatação de Preço */
+.tabela-jogos td:nth-child(3) {
+    font-weight: 600;
+    color: #28a745; /* Verde */
+}
+
+/* Adicionar ao gerenciar-jogos.component.css */
+
+/* Estilos para o modo de Edição */
+.edicao-wrapper {
+    padding: 25px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-top: 20px;
+    background-color: #fcfcfc;
+}
+
+.titulo-edicao {
+    color: #007bff;
+    margin-bottom: 20px;
+    border-bottom: 1px dashed #e0e0e0;
+    padding-bottom: 10px;
+    font-size: 1.5em;
+}
+
+/* Reutilização de estilos de formulário */
+.form-group {
+    margin-bottom: 15px;
+}
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+/* Estilos para o preview da imagem no modo edição */
+.image-preview-edicao {
+    max-width: 150px;
+    max-height: 100px;
+    height: auto;
+    display: block;
+    margin: 10px 0 15px 0;
+    border: 1px solid #eee;
+    border-radius: 4px;
+}
+
+/* Botões Salvar e Cancelar */
+.botoes-edicao {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+.btn-salvar {
+    background-color: #28a745; /* Verde */
+    color: white;
+    padding: 10px 20px;
+}
+
+.btn-salvar:hover:not([disabled]) {
+    background-color: #1e7e34;
+}
+
+.btn-cancelar {
+    background-color: #6c757d; /* Cinza */
+    color: white;
+    padding: 10px 20px;
+}
+
+.btn-cancelar:hover {
+    background-color: #5a6268;
+}

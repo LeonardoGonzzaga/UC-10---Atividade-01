@@ -86,11 +86,13 @@ label {
     margin-top: 25px;
     text-align: center;
     font-weight: 600;
+    background-color: #12852d;
+    color: #ffffff;
 }
 
 /* Para mensagens de sucesso */
 .alerta.sucesso {
-    background-color: #d4edda;
+    background-color: #12852d;
     color: var(--color-success);
     border: 1px solid #c3e6cb;
 }
