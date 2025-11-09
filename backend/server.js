@@ -7,7 +7,11 @@ const app = express();
 
 // Middleware
 app.use(cors({
-    origin: ['https://uc-10-atividade-01.vercel.app', 'http://localhost:4200'],
+    origin: [
+        'https://uc-10-atividade-01.vercel.app',
+        'https://uc-10-atividade-01-vaki.vercel.app',
+        'http://localhost:4200'
+    ],
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
