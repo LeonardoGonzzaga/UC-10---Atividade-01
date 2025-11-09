@@ -1,4 +1,4 @@
 export const environment = {
-    production: true,
-    apiUrl: 'https://<RENDER_BACKEND_URL>/api'
+  production: true,
+  apiUrl: 'https://uc-10-atividade-01.onrender.com/api'
 };
