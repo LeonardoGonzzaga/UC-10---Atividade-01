@@ -6,7 +6,9 @@ require('dotenv').config();
 const app = express();
 
 // Middleware
-app.use(cors());
+// Allow CORS from the frontend origin set in FRONTEND_URL (or allow all if not set)
+const frontendOrigin = process.env.FRONTEND_URL || '*';
+app.use(cors({ origin: frontendOrigin }));
 app.use(express.json());
 
 // Conectar ao MongoDB
@@ -22,6 +24,12 @@ app.use('/api/jogos', require('./routes/jogos'));
 app.use('/api/usuarios', require('./routes/usuarios'));
 
 const PORT = process.env.PORT || 3000;
+// Health check endpoint
+app.get('/health', (req, res) => res.json({ status: 'ok' }));
+
 app.listen(PORT, () => {
     console.log(`Servidor rodando na porta ${PORT}`);
 });
+
+// Export app for testing if needed
+module.exports = app;

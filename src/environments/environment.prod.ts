@@ -1,4 +1,6 @@
 export const environment = {
     production: true,
-    apiUrl: 'http://localhost:3000/api' // Alterar para a URL de produção quando disponível
+    // Substitua pelo endpoint do backend após deploy no Render, por exemplo:
+    // apiUrl: 'https://seu-backend.onrender.com/api'
+    apiUrl: 'https://<RENDER_BACKEND_URL>/api'
 };
