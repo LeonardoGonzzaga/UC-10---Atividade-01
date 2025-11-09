@@ -58,8 +58,16 @@ export class Carrossel implements OnInit, AfterViewInit, OnDestroy {
   private loadSlidesFromBackend(): void {
     this.jogoService.getJogos().subscribe({
       next: (jogos) => {
-        const slides = jogos
-          .filter(j => !!j.imagemUrl)
+        // Filtra jogos com imagem e embaralha o array
+        const jogosComImagem = jogos.filter(j => !!j.imagemUrl);
+        for (let i = jogosComImagem.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [jogosComImagem[i], jogosComImagem[j]] = [jogosComImagem[j], jogosComImagem[i]];
+        }
+        
+        // Pega os 3 primeiros após embaralhar
+        const slides = jogosComImagem
+          .slice(0, 3)
           .map(j => ({ src: j.imagemUrl, alt: j.nome } as slide));
 
         if (slides.length > 0) {
