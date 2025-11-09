@@ -21,7 +21,7 @@ export class AttJogo implements OnInit {
 
   // --- Propriedades para Edição ---
   // Objeto que será vinculado ao formulário de edição
-  public jogoParaEditar: Jogos = new Jogos(0, '', '', 0, ''); 
+  public jogoParaEditar: Jogos = new Jogos('', '', '', 0, ''); 
   // Controla se estamos no modo "Lista" ou "Edição"
   public estaEditando: boolean = false;
 
@@ -50,7 +50,8 @@ export class AttJogo implements OnInit {
     
     this.jogoService.getJogos().subscribe({
       next: (jogos: Jogos[]) => {
-        this.listaJogos = jogos.sort((a, b) => a.id - b.id); 
+        // Ordena por nome para manter uma ordem previsível (ids do Mongo são strings)
+        this.listaJogos = jogos.sort((a, b) => a.nome.localeCompare(b.nome));
         this.isLoading = false;
       },
       error: (erro) => {
@@ -66,7 +67,7 @@ export class AttJogo implements OnInit {
    */
   public excluirJogo(jogo: Jogos): void {
     const nomeDoJogo = jogo.nome;
-    const idDoJogo = jogo.id;
+  const idDoJogo = jogo.id;
 
     // A MENSAGEM DE CONFIRMAÇÃO AGORA USA O NOME DO JOGO
     if (!confirm(`Tem certeza que deseja excluir o jogo "${nomeDoJogo}" (ID: ${idDoJogo})?`)) {
@@ -78,7 +79,7 @@ export class AttJogo implements OnInit {
         // A mensagem de sucesso também usa o nome
         this.mensagem = `Jogo "${nomeDoJogo}" excluído com sucesso!`;
         // Remove o jogo da lista local
-        this.listaJogos = this.listaJogos.filter(j => j.id !== idDoJogo); 
+      this.listaJogos = this.listaJogos.filter(j => j.id !== idDoJogo);
       },
       error: (erro) => {
         this.mensagem = `Erro ao excluir o jogo "${nomeDoJogo}".`;
@@ -102,7 +103,7 @@ export class AttJogo implements OnInit {
     this.estaEditando = false;
     this.mensagem = '';
     // Limpa o objeto do formulário
-    this.jogoParaEditar = new Jogos(0, '', '', 0, ''); 
+  this.jogoParaEditar = new Jogos('', '', '', 0, ''); 
   }
 
   /**

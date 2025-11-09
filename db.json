@@ -69,6 +69,13 @@
       "descricao": "Detroit 2038. A tecnologia evoluiu a um ponto em que androides humanoides estão por todo lado. Eles falam, se movem e se comportam como seres humanos, mas são apenas máquinas a serviço dos humanos.\nJogue com três androides diferentes e veja um mundo à beira do caos - talvez o nosso futuros - pelos olhos deles. Cada decisão que você tomar afetará dramaticamente o resultado da intensa narrativa ramificada do jogo.\nVocê enfrentará dilemas morais e terá que decidir quem vive ou morre. Com milhares de escolhas e dezenas de finais possíveis, como você afetará o futuro de Detroit e o destino da humanidade?",
       "preco": 199.99,
       "imagemUrl": "https://cdn1.epicgames.com/columbine/offer/DETROIT_1-2560x1440-4fd6608a56880dc5d8e9d968517113c3.jpg"
+    },
+    {
+      "id": 13,
+      "nome": "Cyberpunk 2077",
+      "descricao": "Cyberpunk 2077 é um RPG de ação e aventura em mundo aberto ambientado na megalópole de Night City, onde você é um mercenário cyberpunk envolvido em uma intensa luta pela sobrevivência. Com diversas melhorias e conteúdo adicional gratuito, personalize o seu personagem e o seu estilo de jogo conforme aceita trabalhos, construa uma reputação e desbloqueie melhorias. Seus relacionamentos e suas escolhas moldarão a história e o mundo ao seu redor. Aqui nascem as lendas. Qual será a sua?",
+      "preco": 199.9,
+      "imagemUrl": "https://static.cdprojektred.com/cyberpunk.net/news/small/cyberpunk.net_pt-BR_1583665804_5e64d28d1cf372.25126152.jpg"
     }
   ],
   "usuarios": [
@@ -83,5 +90,12 @@
       "email": "leonardo_xtrao@hotmail.com",
       "senha": "1a237895",
       "id": 2
-    }]
+    },
+    {
+      "nome": "Beatriz Santos de Sena",
+      "email": "oain@hotmail.com",
+      "senha": "12345678",
+      "id": 3
+    }
+  ]
 }

@@ -13,13 +13,13 @@ import { CommonModule } from '@angular/common';
 
 export class CadastroJogos implements OnInit {
 
-  public novoJogo: Jogos = new Jogos(0, '', '', 0, ''); 
+  public novoJogo: Jogos = new Jogos('', '', '', 0, ''); 
   public mensagem: string = '';
 
   constructor(private jogoService: JogoService) { }
 
   ngOnInit(): void {
-    this.novoJogo = new Jogos(0, '', '', 0, '');
+  this.novoJogo = new Jogos('', '', '', 0, '');
   }
 
   public cadastrarJogo(): void {
@@ -30,7 +30,7 @@ export class CadastroJogos implements OnInit {
         console.log('Jogo cadastrado com sucesso:', resposta);
         this.mensagem = `Jogo "${resposta.nome}" cadastrado com sucesso! ID: ${resposta.id}`;
         
-        this.novoJogo = new Jogos(0, '', '', 0, ''); 
+  this.novoJogo = new Jogos('', '', '', 0, ''); 
       },
       error: (erro) => {
         console.error('Erro ao cadastrar jogo:', erro);

@@ -1,0 +1,79 @@
+const express = require('express');
+const router = express.Router();
+const Jogo = require('../models/Jogo');
+
+// Listar todos os jogos
+router.get('/', async (req, res) => {
+    try {
+        const jogos = await Jogo.find();
+        res.json(jogos);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
+// Obter um jogo específico
+router.get('/:id', async (req, res) => {
+    try {
+        const jogo = await Jogo.findById(req.params.id);
+        if (jogo) {
+            res.json(jogo);
+        } else {
+            res.status(404).json({ message: 'Jogo não encontrado' });
+        }
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
+// Criar um novo jogo
+router.post('/', async (req, res) => {
+    const jogo = new Jogo({
+        nome: req.body.nome,
+        descricao: req.body.descricao,
+        preco: req.body.preco,
+        imagemUrl: req.body.imagemUrl
+    });
+
+    try {
+        const novoJogo = await jogo.save();
+        res.status(201).json(novoJogo);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+});
+
+// Atualizar um jogo
+router.put('/:id', async (req, res) => {
+    try {
+        const jogo = await Jogo.findById(req.params.id);
+        if (!jogo) {
+            return res.status(404).json({ message: 'Jogo não encontrado' });
+        }
+
+        jogo.nome = req.body.nome || jogo.nome;
+        jogo.descricao = req.body.descricao || jogo.descricao;
+        jogo.preco = req.body.preco || jogo.preco;
+        jogo.imagemUrl = req.body.imagemUrl || jogo.imagemUrl;
+
+        const jogoAtualizado = await jogo.save();
+        res.json(jogoAtualizado);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+});
+
+// Deletar um jogo
+router.delete('/:id', async (req, res) => {
+    try {
+        const jogo = await Jogo.findByIdAndDelete(req.params.id);
+        if (!jogo) {
+            return res.status(404).json({ message: 'Jogo não encontrado' });
+        }
+        res.json({ message: 'Jogo removido com sucesso' });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
+module.exports = router;
