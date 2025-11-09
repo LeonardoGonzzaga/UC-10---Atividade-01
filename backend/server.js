@@ -7,11 +7,23 @@ const app = express();
 
 // Middleware
 app.use(cors({
-    origin: [
-        'https://uc-10-atividade-01.vercel.app',
-        'https://uc-10-atividade-01-vaki.vercel.app',
-        'http://localhost:4200'
-    ],
+    origin: function(origin, callback) {
+        // Permitir requisições sem origem (como apps mobile ou Postman)
+        if (!origin) return callback(null, true);
+        
+        // Lista de origens permitidas
+        const allowedOrigins = [
+            'https://estouroecommerce.vercel.app',
+            'http://localhost:4200'
+        ];
+        
+        // Verificar se a origem está na lista ou se é um subdomínio do Vercel
+        if (allowedOrigins.includes(origin) || origin.endsWith('.vercel.app')) {
+            callback(null, true);
+        } else {
+            callback(new Error('Não permitido por CORS'));
+        }
+    },
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
