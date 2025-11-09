@@ -1,7 +1,7 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "Backend for game store application",
+  "description": "Backend para projeto e-commerce do Curso",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
