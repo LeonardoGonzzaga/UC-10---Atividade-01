@@ -24,11 +24,7 @@ interface slide {
 })
 export class Carrossel implements OnInit, AfterViewInit, OnDestroy { 
 
-  slides: slide[] = [ 
-    // placeholders exibidos enquanto carrega do backend
-    { src: "https://i.imgur.com/6XGIfTJ.jpeg", alt: 'Promoção de um jogo', },
-    { src: "https://i.imgur.com/Un857fa.jpeg", alt: 'Promoção do mês' }
-  ];
+  slides: slide[] = [];
   
   currentIndex: number = 0;
   totalItems: number = this.slides.length;
