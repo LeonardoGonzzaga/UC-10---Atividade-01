@@ -1,18 +1,22 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Jogos } from '../models/jogos.models';
-import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class JogoService { 
   
-  private readonly apiUrl: string = `${environment.apiUrl}/jogos`;
+  private readonly apiUrl: string;
   
-  constructor(private httpClient: HttpClient) { }
+  constructor(
+    private httpClient: HttpClient,
+    @Inject('BASE_API_URL') baseApiUrl: string
+  ) {
+    this.apiUrl = `${baseApiUrl}/jogos`;
+  }
 
   public getJogos(): Observable<Jogos[]> {
     // O backend retorna documentos MongoDB com _id; mapeamos para 'id' para manter compatibilidade com o front
