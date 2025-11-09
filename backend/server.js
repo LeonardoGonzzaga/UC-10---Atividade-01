@@ -6,9 +6,12 @@ require('dotenv').config();
 const app = express();
 
 // Middleware
-// Allow CORS from the frontend origin set in FRONTEND_URL (or allow all if not set)
-const frontendOrigin = process.env.FRONTEND_URL || '*';
-app.use(cors({ origin: frontendOrigin }));
+app.use(cors({
+    origin: ['https://uc-10-atividade-01.vercel.app', 'http://localhost:4200'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true
+}));
 app.use(express.json());
 
 // Conectar ao MongoDB
