@@ -62,6 +62,13 @@
       "descricao": "Mergulhe em Little Nightmares, um fantástico conto sombrio que o fará enfrentar seus medos de infância! Ajude Six a fugir de A Bocarra – um navio imenso e misterioso habitado por almas corrompidas que procuram sua próxima refeição. À medida que você progride na sua jornada, explore a mais perturbadora casa de bonecas como uma prisão para dela fugir e um parquinho cheio de segredos para se descobrir. Reconecte-se com sua criança interior para soltar a sua imaginação e encontrar a saída!",
       "preco": 84.9,
       "imagemUrl": "https://i.redd.it/every-cover-art-for-the-little-nightmares-games-v0-jl3r2kyy0f2c1.png?width=1920&format=png&auto=webp&s=7311873f183eb7f733f177846cee6e2354d9db05"
+    },
+    {
+      "id": 12,
+      "nome": "Detroit: Become Human",
+      "descricao": "Detroit 2038. A tecnologia evoluiu a um ponto em que androides humanoides estão por todo lado. Eles falam, se movem e se comportam como seres humanos, mas são apenas máquinas a serviço dos humanos.\nJogue com três androides diferentes e veja um mundo à beira do caos - talvez o nosso futuros - pelos olhos deles. Cada decisão que você tomar afetará dramaticamente o resultado da intensa narrativa ramificada do jogo.\nVocê enfrentará dilemas morais e terá que decidir quem vive ou morre. Com milhares de escolhas e dezenas de finais possíveis, como você afetará o futuro de Detroit e o destino da humanidade?",
+      "preco": 199.99,
+      "imagemUrl": "https://cdn1.epicgames.com/columbine/offer/DETROIT_1-2560x1440-4fd6608a56880dc5d8e9d968517113c3.jpg"
     }
   ],
   "usuarios": [
@@ -76,6 +83,5 @@
       "email": "leonardo_xtrao@hotmail.com",
       "senha": "1a237895",
       "id": 2
-    }
-  ]
+    }]
 }

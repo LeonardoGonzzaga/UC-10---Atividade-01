@@ -45,7 +45,8 @@ export class Login {
       next: (usuarios) => {
         if (usuarios && usuarios.length === 1) {
           // 2. Credenciais válidas
-          this.authService.login();
+          const user = usuarios[0];
+          this.authService.login(user.nome);
           this.setMensagem('Login realizado com sucesso!', 'sucesso');
           
           // Redireciona para a página de atualização de jogos

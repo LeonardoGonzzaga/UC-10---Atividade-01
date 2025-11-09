@@ -12,16 +12,21 @@ import { CommonModule } from '@angular/common';
 })
 export class Header {
   isAuthenticated$;
+  userName$;
 
   constructor(
     private authService: AuthService,
     private router: Router
   ) {
     this.isAuthenticated$ = this.authService.isAuthenticated$;
+    this.userName$ = this.authService.userName$;
   }
 
-  logout() {
-    this.authService.logout();
-    this.router.navigate(['/login']);
+  onLoginClick() {
+    if (this.authService.isUserAuthenticated()) {
+      this.router.navigate(['/attJogo']);
+    } else {
+      this.router.navigate(['/login']);
+    }
   }
 }
