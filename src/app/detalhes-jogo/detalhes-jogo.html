@@ -1,7 +1,8 @@
 <div class="detalhes-container">
     <!-- Loading state -->
     <div *ngIf="loading" class="loading">
-        Carregando informações do jogo...
+        <div class="spinner"></div>
+        <p>Carregando informações do jogo...</p>
     </div>
 
     <!-- Error state -->
@@ -19,10 +20,77 @@
             
             <div class="info-container">
                 <h1 class="jogo-titulo">{{ jogo.nome }}</h1>
-                <p class="jogo-preco">{{ formatarPreco(jogo.preco) }}</p>
+                <div class="preco-comprar">
+                    <p class="jogo-preco">{{ formatarPreco(jogo.preco) }}</p>
+                    <button class="botao-comprar">Comprar</button>
+                </div>
                 <p class="jogo-descricao">{{ jogo.descricao }}</p>
-                <a routerLink="/" class="botao-voltar">Voltar para a loja</a>
+                
+                <div class="avaliacao">
+                    <button class="botao-avaliacao positivo" (click)="avaliarJogo(true)">
+                        👍 {{jogo.avaliacoesPositivas}}
+                    </button>
+                    <button class="botao-avaliacao negativo" (click)="avaliarJogo(false)">
+                        👎 {{jogo.avaliacoesNegativas}}
+                    </button>
+                </div>
             </div>
+        </div>
+
+        <div class="detalhes-info">
+            <div class="info-section">
+                <h2>Informações Gerais</h2>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <h3>Gênero</h3>
+                        <p>{{jogo.genero}}</p>
+                    </div>
+                    <div class="info-item">
+                        <h3>Data de Lançamento</h3>
+                        <p>{{jogo.dataLancamento | date:'dd/MM/yyyy'}}</p>
+                    </div>
+                    <div class="info-item">
+                        <h3>Publisher</h3>
+                        <p>{{jogo.publisher}}</p>
+                    </div>
+                    <div class="info-item">
+                        <h3>Desenvolvedora</h3>
+                        <p>{{jogo.desenvolvedora}}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-section">
+                <h2>Idiomas Disponíveis</h2>
+                <div class="idiomas-lista">
+                    <span class="idioma-tag" *ngFor="let idioma of jogo.idiomas">{{idioma}}</span>
+                </div>
+            </div>
+
+            <div class="info-section">
+                <h2>Requisitos Mínimos do Sistema</h2>
+                <div class="requisitos-lista">
+                    <div class="requisito-item">
+                        <strong>Sistema Operacional:</strong> {{jogo.requisitosMinimos.sistema}}
+                    </div>
+                    <div class="requisito-item">
+                        <strong>Processador:</strong> {{jogo.requisitosMinimos.processador}}
+                    </div>
+                    <div class="requisito-item">
+                        <strong>Memória RAM:</strong> {{jogo.requisitosMinimos.memoria}}
+                    </div>
+                    <div class="requisito-item">
+                        <strong>Placa de Vídeo:</strong> {{jogo.requisitosMinimos.placaVideo}}
+                    </div>
+                    <div class="requisito-item">
+                        <strong>Armazenamento:</strong> {{jogo.requisitosMinimos.armazenamento}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="acoes">
+            <a routerLink="/home" class="botao-voltar">Voltar para a loja</a>
         </div>
     </div>
 </div>

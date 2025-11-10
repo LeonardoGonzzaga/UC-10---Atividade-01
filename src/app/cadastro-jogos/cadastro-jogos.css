@@ -1,12 +1,14 @@
 /* Cores baseadas no layout do cabeçalho */
 :root {
-    --color-primary: #85a9ff; /* Um azul mais claro, similar ao do header */
-    --color-secondary: #007bff; /* Um azul padrão para botões */
-    --color-background: #f4f7f9; /* Fundo levemente cinza */
+    --color-primary: #85a9ff;
+    --color-secondary: #007bff;
+    --color-background: #f4f7f9;
     --color-text: #333;
     --color-white: #fff;
     --color-success: #28a745;
     --color-danger: #dc3545;
+    --color-border: #ddd;
+    --color-section-bg: #f8f9fa;
 }
 
 .cadastro-container {
@@ -104,10 +106,84 @@ label {
     border: 1px solid #f5c6cb;
 }
 
+/* Estilização das seções do formulário */
+.form-section {
+    background-color: var(--color-section-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 25px;
+}
+
+.form-section h3 {
+    color: var(--color-secondary);
+    margin-bottom: 20px;
+    font-size: 1.2em;
+    border-bottom: 2px solid var(--color-primary);
+    padding-bottom: 10px;
+}
+
+/* Estilização dos Idiomas */
+.idiomas-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.idioma-item {
+    background-color: var(--color-white);
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid var(--color-border);
+}
+
+.idioma-item label {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    cursor: pointer;
+}
+
+.idioma-item input[type="checkbox"] {
+    margin-right: 8px;
+}
+
+/* Estilização dos Requisitos do Sistema */
+.requisitos-lista {
+    display: grid;
+    gap: 15px;
+}
+
+.requisito-item {
+    background-color: var(--color-white);
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid var(--color-border);
+}
+
 /* Responsive: Ajustes para telas menores */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
     .cadastro-container {
-        margin: 20px;
-        padding: 20px;
+        margin: 10px;
+        padding: 15px;
+    }
+
+    .form-section {
+        padding: 15px;
+    }
+
+    .idiomas-container {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    .idiomas-container {
+        grid-template-columns: 1fr;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
     }
 }

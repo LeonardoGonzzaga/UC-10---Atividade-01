@@ -21,7 +21,27 @@ export class AttJogo implements OnInit {
 
   // --- Propriedades para Edição ---
   // Objeto que será vinculado ao formulário de edição
-  public jogoParaEditar: Jogos = new Jogos('', '', '', 0, ''); 
+    public jogoParaEditar: Jogos = new Jogos(
+      '',      // id
+      '',      // nome
+      '',      // descricao
+      0,       // preco
+      '',      // imagemUrl
+      '',      // genero
+      '',      // publisher
+      '',      // desenvolvedora
+      {        // requisitosMinimos
+        sistema: '',
+        processador: '',
+        memoria: '',
+        placaVideo: '',
+        armazenamento: ''
+      },
+      new Date(), // dataLancamento
+      [],      // idiomas
+      0,       // avaliacoesPositivas
+      0        // avaliacoesNegativas
+    );
   // Controla se estamos no modo "Lista" ou "Edição"
   public estaEditando: boolean = false;
 
@@ -103,7 +123,27 @@ export class AttJogo implements OnInit {
     this.estaEditando = false;
     this.mensagem = '';
     // Limpa o objeto do formulário
-  this.jogoParaEditar = new Jogos('', '', '', 0, ''); 
+    this.jogoParaEditar = new Jogos(
+      '',      // id
+      '',      // nome
+      '',      // descricao
+      0,       // preco
+      '',      // imagemUrl
+      '',      // genero
+      '',      // publisher
+      '',      // desenvolvedora
+      {        // requisitosMinimos
+        sistema: '',
+        processador: '',
+        memoria: '',
+        placaVideo: '',
+        armazenamento: ''
+      },
+      new Date(), // dataLancamento
+      [],      // idiomas
+      0,       // avaliacoesPositivas
+      0        // avaliacoesNegativas
+    );
   }
 
   /**

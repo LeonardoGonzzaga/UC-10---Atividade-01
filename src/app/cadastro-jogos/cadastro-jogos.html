@@ -1,60 +1,188 @@
 <section class="cadastro-container">
     <h2>🎮 Cadastrar Novo Jogo</h2>
     
-    <form (ngSubmit)="cadastrarJogo()">
-        
-        <div class="form-group">
-            <label for="nome">Nome do Jogo:</label>
-            <input 
-                id="nome" 
-                name="nome"
-                type="text" 
-                class="form-control"
-                [(ngModel)]="novoJogo.nome" 
-                required>
+    <form (ngSubmit)="cadastrarJogo()" #jogoForm="ngForm">
+        <div class="form-section">
+            <h3>Informações Básicas</h3>
+            
+            <div class="form-group">
+                <label for="nome">Nome do Jogo:</label>
+                <input 
+                    id="nome" 
+                    name="nome"
+                    type="text" 
+                    class="form-control"
+                    [(ngModel)]="novoJogo.nome" 
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label for="descricao">Descrição:</label>
+                <textarea 
+                    id="descricao" 
+                    name="descricao"
+                    class="form-control"
+                    rows="5"
+                    [(ngModel)]="novoJogo.descricao" 
+                    required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="preco">Preço (R$):</label>
+                <input 
+                    id="preco" 
+                    name="preco"
+                    type="number" 
+                    class="form-control"
+                    step="0.01" 
+                    min="0"
+                    [(ngModel)]="novoJogo.preco" 
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label for="imagemUrl">URL da Imagem:</label>
+                <input 
+                    id="imagemUrl" 
+                    name="imagemUrl"
+                    type="text" 
+                    class="form-control"
+                    [(ngModel)]="novoJogo.imagemUrl" 
+                    required>
+            </div>
         </div>
 
-        <div class="form-group">
-            <label for="descricao">Descrição:</label>
-            <textarea 
-                id="descricao" 
-                name="descricao"
-                class="form-control"
-                rows="5"
-                [(ngModel)]="novoJogo.descricao" 
-                required></textarea>
+        <div class="form-section">
+            <h3>Detalhes do Jogo</h3>
+            
+            <div class="form-group">
+                <label for="genero">Gênero:</label>
+                <input 
+                    id="genero" 
+                    name="genero"
+                    type="text" 
+                    class="form-control"
+                    [(ngModel)]="novoJogo.genero" 
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label for="publisher">Publisher:</label>
+                <input 
+                    id="publisher" 
+                    name="publisher"
+                    type="text" 
+                    class="form-control"
+                    [(ngModel)]="novoJogo.publisher" 
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label for="desenvolvedora">Desenvolvedora:</label>
+                <input 
+                    id="desenvolvedora" 
+                    name="desenvolvedora"
+                    type="text" 
+                    class="form-control"
+                    [(ngModel)]="novoJogo.desenvolvedora" 
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label for="dataLancamento">Data de Lançamento:</label>
+                <input 
+                    id="dataLancamento" 
+                    name="dataLancamento"
+                    type="date" 
+                    class="form-control"
+                    [(ngModel)]="novoJogo.dataLancamento" 
+                    required>
+            </div>
         </div>
 
-        <div class="form-group">
-            <label for="preco">Preço (R$):</label>
-            <input 
-                id="preco" 
-                name="preco"
-                type="number" 
-                class="form-control"
-                step="0.01" 
-                min="0"
-                [(ngModel)]="novoJogo.preco" 
-                required>
+        <div class="form-section">
+            <h3>Requisitos do Sistema</h3>
+            
+            <div class="form-group">
+                <label for="sistema">Sistema Operacional:</label>
+                <input 
+                    id="sistema" 
+                    name="sistema"
+                    type="text" 
+                    class="form-control"
+                    [(ngModel)]="novoJogo.requisitosMinimos.sistema" 
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label for="processador">Processador:</label>
+                <input 
+                    id="processador" 
+                    name="processador"
+                    type="text" 
+                    class="form-control"
+                    [(ngModel)]="novoJogo.requisitosMinimos.processador" 
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label for="memoria">Memória RAM:</label>
+                <input 
+                    id="memoria" 
+                    name="memoria"
+                    type="text" 
+                    class="form-control"
+                    [(ngModel)]="novoJogo.requisitosMinimos.memoria" 
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label for="placaVideo">Placa de Vídeo:</label>
+                <input 
+                    id="placaVideo" 
+                    name="placaVideo"
+                    type="text" 
+                    class="form-control"
+                    [(ngModel)]="novoJogo.requisitosMinimos.placaVideo" 
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label for="armazenamento">Armazenamento:</label>
+                <input 
+                    id="armazenamento" 
+                    name="armazenamento"
+                    type="text" 
+                    class="form-control"
+                    [(ngModel)]="novoJogo.requisitosMinimos.armazenamento" 
+                    required>
+            </div>
         </div>
 
-        <div class="form-group">
-            <label for="imagemUrl">URL da Imagem (Ex: /assets/imagens/nome.jpg):</label>
-            <input 
-                id="imagemUrl" 
-                name="imagemUrl"
-                type="text" 
-                class="form-control"
-                [(ngModel)]="novoJogo.imagemUrl" 
-                required>
+        <div class="form-section">
+            <h3>Idiomas</h3>
+            <div class="form-group idiomas-group">
+                <label>Idiomas Disponíveis:</label>
+                <div class="idiomas-container">
+                    <div class="idioma-item" *ngFor="let idioma of idiomasDisponiveis; let i = index">
+                        <label>
+                            <input 
+                                type="checkbox"
+                                [checked]="idiomasSelecionados.includes(idioma)"
+                                (change)="toggleIdioma(idioma)">
+                            {{idioma}}
+                        </label>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <button type="submit" class="btn-cadastrar" [disabled]="!novoJogo.nome || !novoJogo.preco">
+        <button type="submit" class="btn-cadastrar" [disabled]="!jogoForm.form.valid">
             Cadastrar Jogo
         </button>
     </form>
     
-    <div *ngIf="mensagem" class="alerta">
+    <div *ngIf="mensagem" class="alerta" [class.sucesso]="!erro" [class.erro]="erro">
         {{ mensagem }}
     </div>
 

@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { JogoService } from '../services/jogos.service';
 import { Jogos } from '../models/jogos.models';
 
 @Component({
   selector: 'app-detalhes-jogo',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './detalhes-jogo.html',
   styleUrls: ['./detalhes-jogo.css']
 })
@@ -51,5 +51,22 @@ export class DetalhesJogo implements OnInit {
       style: 'currency',
       currency: 'BRL'
     }).format(preco);
+  }
+
+  avaliarJogo(positiva: boolean): void {
+    if (!this.jogo || !this.jogo.id) return;
+
+    this.loading = true;
+    this.jogoService.avaliarJogo(this.jogo.id, positiva).subscribe({
+      next: (jogoAtualizado) => {
+        this.jogo = jogoAtualizado;
+        this.loading = false;
+      },
+      error: (error) => {
+        console.error('Erro ao avaliar jogo:', error);
+        this.error = 'Erro ao registrar avaliação';
+        this.loading = false;
+      }
+    });
   }
 }

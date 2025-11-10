@@ -49,4 +49,11 @@ export class JogoService {
     const urlExcluir = `${this.apiUrl}/${id}`;
     return this.httpClient.delete<any>(urlExcluir);
   }
+
+  public avaliarJogo(id: string, positiva: boolean): Observable<Jogos> {
+    const urlAvaliar = `${this.apiUrl}/${id}/avaliacao`;
+    return this.httpClient.post<any>(urlAvaliar, { positiva }).pipe(
+      map(j => ({ ...j, id: j._id || j.id } as Jogos))
+    );
+  }
 }
