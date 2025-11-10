@@ -19,6 +19,17 @@ export class AttJogo implements OnInit {
   public isLoading: boolean = true;
   public mensagem: string = '';
 
+  // Lista de idiomas possíveis para seleção na edição
+  public idiomasDisponiveis: string[] = [
+    'Português (Brasil)', 'Inglês', 'Espanhol', 'Japonês', 'Francês', 'Alemão', 'Italiano', 'Russo', 'Chinês (Simplificado)', 'Chinês (Tradicional)', 'Coreano'
+  ];
+
+  // Idiomas selecionados enquanto edita
+  public idiomasSelecionados: string[] = [];
+
+  // Campo auxiliar para data (formato yyyy-MM-dd usado pelo input type="date")
+  public editDataLancamento: string = '';
+
   // --- Propriedades para Edição ---
   // Objeto que será vinculado ao formulário de edição
     public jogoParaEditar: Jogos = new Jogos(
@@ -109,9 +120,15 @@ export class AttJogo implements OnInit {
   }
 
   public iniciarEdicao(jogo: Jogos): void {
-    this.jogoParaEditar = { ...jogo }; 
-    
-    this.estaEditando = true; 
+    this.jogoParaEditar = { ...jogo };
+
+    // Prepara seleção de idiomas
+    this.idiomasSelecionados = Array.isArray(jogo.idiomas) ? [...jogo.idiomas] : [];
+
+    // Prepara campo de data no formato yyyy-MM-dd
+    this.editDataLancamento = jogo.dataLancamento ? new Date(jogo.dataLancamento).toISOString().slice(0, 10) : '';
+
+    this.estaEditando = true;
     this.mensagem = `Editando: ${jogo.nome} (ID: ${jogo.id})`;
   }
 
@@ -144,6 +161,18 @@ export class AttJogo implements OnInit {
       0,       // avaliacoesPositivas
       0        // avaliacoesNegativas
     );
+    this.idiomasSelecionados = [];
+    this.editDataLancamento = '';
+  }
+
+  public toggleIdioma(idioma: string): void {
+    const idx = this.idiomasSelecionados.indexOf(idioma);
+    if (idx === -1) {
+      this.idiomasSelecionados.push(idioma);
+    } else {
+      this.idiomasSelecionados.splice(idx, 1);
+    }
+    this.jogoParaEditar.idiomas = [...this.idiomasSelecionados];
   }
 
   /**
@@ -155,6 +184,10 @@ export class AttJogo implements OnInit {
       this.mensagem = 'Erro: Jogo inválido para atualização.';
       return;
     }
+
+    // Atualiza idiomas e data antes de enviar
+    this.jogoParaEditar.idiomas = [...this.idiomasSelecionados];
+    this.jogoParaEditar.dataLancamento = this.editDataLancamento ? new Date(this.editDataLancamento) : this.jogoParaEditar.dataLancamento;
 
     this.jogoService.atualizarJogo(this.jogoParaEditar.id, this.jogoParaEditar).subscribe({
       next: (jogoAtualizado) => {

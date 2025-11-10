@@ -69,6 +69,71 @@
             <div class="image-preview-container" *ngIf="jogoParaEditar.imagemUrl">
                  <img [src]="jogoParaEditar.imagemUrl" alt="Prévia da Imagem" class="image-preview-edicao">
             </div>
+            <div class="detalhes-adicionais">
+                <h4>Detalhes Adicionais</h4>
+
+                <div class="form-group">
+                    <label for="editGenero">Gênero:</label>
+                    <input id="editGenero" name="editGenero" type="text" class="form-control" [(ngModel)]="jogoParaEditar.genero">
+                </div>
+
+                <div class="form-group">
+                    <label for="editPublisher">Publisher:</label>
+                    <input id="editPublisher" name="editPublisher" type="text" class="form-control" [(ngModel)]="jogoParaEditar.publisher">
+                </div>
+
+                <div class="form-group">
+                    <label for="editDesenvolvedora">Desenvolvedora:</label>
+                    <input id="editDesenvolvedora" name="editDesenvolvedora" type="text" class="form-control" [(ngModel)]="jogoParaEditar.desenvolvedora">
+                </div>
+
+                <div class="form-group">
+                    <label for="editDataLancamento">Data de Lançamento:</label>
+                    <input id="editDataLancamento" name="editDataLancamento" type="date" class="form-control" [(ngModel)]="editDataLancamento">
+                </div>
+
+                <div class="form-group">
+                    <label>Idiomas Disponíveis:</label>
+                    <div class="idiomas-container">
+                        <label class="idioma-item" *ngFor="let idioma of idiomasDisponiveis">
+                            <input type="checkbox" [checked]="idiomasSelecionados.includes(idioma)" (change)="toggleIdioma(idioma)">
+                            {{ idioma }}
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-section requisitos-edicao">
+                    <h5>Requisitos Mínimos</h5>
+                    <div class="form-group">
+                        <label for="reqSistema">Sistema Operacional:</label>
+                        <input id="reqSistema" name="reqSistema" type="text" class="form-control" [(ngModel)]="jogoParaEditar.requisitosMinimos.sistema">
+                    </div>
+                    <div class="form-group">
+                        <label for="reqProcessador">Processador:</label>
+                        <input id="reqProcessador" name="reqProcessador" type="text" class="form-control" [(ngModel)]="jogoParaEditar.requisitosMinimos.processador">
+                    </div>
+                    <div class="form-group">
+                        <label for="reqMemoria">Memória RAM:</label>
+                        <input id="reqMemoria" name="reqMemoria" type="text" class="form-control" [(ngModel)]="jogoParaEditar.requisitosMinimos.memoria">
+                    </div>
+                    <div class="form-group">
+                        <label for="reqPlaca">Placa de Vídeo:</label>
+                        <input id="reqPlaca" name="reqPlaca" type="text" class="form-control" [(ngModel)]="jogoParaEditar.requisitosMinimos.placaVideo">
+                    </div>
+                    <div class="form-group">
+                        <label for="reqArmazenamento">Armazenamento:</label>
+                        <input id="reqArmazenamento" name="reqArmazenamento" type="text" class="form-control" [(ngModel)]="jogoParaEditar.requisitosMinimos.armazenamento">
+                    </div>
+                </div>
+
+                <div class="form-group avaliacoes-leitura">
+                    <label>Avaliações:</label>
+                    <div>
+                        <span class="avaliacao-pos">👍 {{ jogoParaEditar.avaliacoesPositivas || 0 }}</span>
+                        <span class="avaliacao-neg">👎 {{ jogoParaEditar.avaliacoesNegativas || 0 }}</span>
+                    </div>
+                </div>
+            </div>
 
             <div class="botoes-edicao">
                 <button type="submit" class="btn btn-salvar" [disabled]="!jogoParaEditar.nome || !jogoParaEditar.preco">
