@@ -43,6 +43,23 @@
             </div>
 
             <div class="form-group">
+                <label for="editSobre">Sobre este Jogo (informações detalhadas):</label>
+
+                <div class="rte-toolbar">
+                    <button type="button" class="rte-btn" (click)="applyFormat('bold')">B</button>
+                    <button type="button" class="rte-btn" (click)="applyFormat('italic')"><i>i</i></button>
+                    <button type="button" class="rte-btn" (click)="applyFormat('underline')">U</button>
+                    <button type="button" class="rte-btn" (click)="applyFormat('insertUnorderedList')">• Lista</button>
+                    <button type="button" class="rte-btn" (click)="applyFormat('insertOrderedList')">1. Lista</button>
+                    <button type="button" class="rte-btn" (click)="applyFormat('formatBlock','<h2>')">H2</button>
+                    <input type="color" title="Cor do texto" (change)="applyFormat('foreColor', $event.target.value)" />
+                    <button type="button" class="rte-btn" (click)="createLink()">Link</button>
+                </div>
+
+                <div #editor id="editSobre" class="rte-editor form-control" contenteditable="true" aria-label="Editor de texto para 'Sobre este Jogo'"></div>
+            </div>
+
+            <div class="form-group">
                 <label for="editPreco">Preço (R$):</label>
                 <input 
                     id="editPreco" 

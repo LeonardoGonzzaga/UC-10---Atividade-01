@@ -1,3 +1,4 @@
+
 .detalhes-container {
     max-width: 1200px;
     margin: 20px auto;
@@ -25,8 +26,9 @@
 }
 
 .imagem-container {
-    flex: 0 0 400px;
-    max-width: 400px;
+    /* Aumenta a imagem para dar mais impacto visual */
+    flex: 0 0 410px;
+    max-width: 410px;
 }
 
 .imagem-container img {
@@ -94,4 +96,146 @@
     .jogo-preco {
         font-size: 1.5em;
     }
+}
+
+/* Layout preço + comprar */
+.preco-comprar {
+    display:flex;
+    align-items:center;
+    gap:16px;
+    margin:8px 0 16px 0;
+}
+
+.botao-comprar{
+    background: linear-gradient(180deg, #ff7a18 0%, #ff4e00 100%);
+    color:#fff;
+    border:none;
+    padding:12px 20px;
+    border-radius:8px;
+    font-size:1.05em;
+    font-weight:700;
+    cursor:pointer;
+    box-shadow:0 6px 18px rgba(255,78,0,0.25);
+    transition:transform .12s ease, box-shadow .12s ease;
+}
+.botao-comprar:hover{ transform:translateY(-2px); box-shadow:0 10px 22px rgba(255,78,0,0.28); }
+
+/* Avaliações */
+.avaliacao{ margin-top:12px; display:flex; gap:8px }
+.botao-avaliacao{ background:#fff; border:1px solid #ddd; padding:6px 10px; border-radius:6px; cursor:pointer }
+.botao-avaliacao.positivo{ color:#155724; border-color:#c3e6cb }
+.botao-avaliacao.negativo{ color:#721c24; border-color:#f5c6cb }
+
+/* Seções de informações */
+.detalhes-info{ margin-top:20px; display:grid; gap:22px }
+.info-section{ background:#fafafa; border-radius:8px; padding:18px; box-shadow:0 1px 4px rgba(0,0,0,0.03) }
+.info-grid{ display:grid; grid-template-columns:repeat(2, 1fr); gap:12px 24px; align-items:start }
+.info-item h3{ margin:0 0 6px 0; font-size:1em; color:#111 }
+.info-item p{ margin:0 0 10px 0; color:#333 }
+
+.idiomas-lista{ margin-top:8px }
+.idioma-tag{ display:inline-block; background:#fff; border:1px solid #e6e6e6; padding:6px 10px; margin:6px 6px 0 0; border-radius:16px; font-size:.9em; color:#333 }
+
+.requisitos-lista{ display:grid; gap:10px; margin-top:8px }
+.requisito-item{ color:#333 }
+.requisitos-lista strong{ display:inline-block; width:160px; color:#111 }
+
+@media (max-width: 768px){
+    .info-grid{ grid-template-columns: 1fr }
+    .imagem-container{ max-width:100% }
+    .preco-comprar{ gap:12px }
+}
+
+/* Estilos para seção 'Sobre este Jogo' - mais alinhado com as outras info-sections */
+.sobre-section{
+    margin-top:18px;
+    background: linear-gradient(180deg, #fbfdff 0%, #f7f9fc 100%);
+    padding:18px;
+    border-radius:8px;
+    border: 1px solid rgba(15,23,42,0.04);
+    box-shadow: 0 4px 12px rgba(12,18,35,0.03);
+}
+.sobre-section h2{
+    margin:0 0 12px 0;
+    font-size:1.15em;
+    color:#0f172a;
+    font-weight:800;
+}
+
+.sobre-section h2::after {
+    content: '';
+    display: block;
+    width: 60px; 
+    height: 3px;
+    background: linear-gradient(90deg, rgba(34,102,255,0.95), rgba(34,153,255,0.8));
+    border-radius: 3px;
+    margin-top: 8px;
+}
+
+.sobre-text{
+    color:#333;
+    line-height:1.75;
+    white-space:normal; /* render HTML as-is */
+    text-align:justify; /* justify the text for better readability */
+    font-size:0.98em;
+    margin:0;
+}
+
+/* Allow the sobre-section to make full use of the info column width */
+.info-container .sobre-section, .jogo-content > .sobre-section {
+    width:100%;
+}
+
+/* Estilização elegante para títulos e destaque das seções */
+.info-section h2 {
+    font-size: 1.45em;
+    margin: 0 0 12px 0;
+    color: #0f172a; /* tom escuro, sem contraste agressivo */
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    position: relative;
+}
+
+.info-section h2::after {
+    content: '';
+    display: block;
+    width: 52px;
+    height: 4px;
+    background: linear-gradient(90deg, rgba(34,102,255,0.95), rgba(34,153,255,0.8));
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+.info-section {
+    /* aumento sutil do contraste do background para indicar 'área informativa' */
+    background: linear-gradient(180deg, #fbfdff 0%, #f7f9fc 100%);
+    border: 1px solid rgba(15,23,42,0.04);
+}
+
+.detalhes-container {
+    background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
+    max-width: 1400px; /* Aumenta a largura máxima da página */
+    margin: 30px auto;
+    padding: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* Sombra mais destacada */
+}
+
+/* Suaviza e espaça melhor os títulos internos (h3) */
+.info-item h3 {
+    font-size: 0.98em;
+    font-weight: 700;
+    color: #0b1220;
+}
+
+/* Ajuste fino da paleta e espaçamento para leitura */
+.info-item p, .requisito-item, .idioma-tag {
+    font-size: 0.95em;
+    line-height: 1.5;
+}
+
+/* Pequeno destaque visual ao passar o mouse sobre uma seção */
+.info-section:hover {
+    transform: translateY(-2px);
+    transition: transform 0.18s ease;
+    box-shadow: 0 8px 24px rgba(12,18,35,0.04);
 }

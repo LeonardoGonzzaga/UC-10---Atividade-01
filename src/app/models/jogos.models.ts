@@ -17,6 +17,7 @@ export class Jogos {
     },
     public dataLancamento: Date,
     public idiomas: string[],
+    public sobre: string,
     public avaliacoesPositivas: number = 0,
     public avaliacoesNegativas: number = 0
   ) {}

@@ -31,6 +31,7 @@ const jogoSchema = new mongoose.Schema({
     desenvolvedora: { type: String, default: '' },
     requisitosMinimos: { type: requisitosSchema, default: () => ({}) },
     dataLancamento: { type: Date },
+    sobre: { type: String, default: '' },
     idiomas: { type: [String], default: [] },
     avaliacoesPositivas: { type: Number, default: 0 },
     avaliacoesNegativas: { type: Number, default: 0 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Jogos } from '../models/jogos.models';       
 import { JogoService } from '../services/jogos.service'; 
 import { ActivatedRoute, Router } from '@angular/router';
@@ -9,6 +9,7 @@ import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-att-jogo',
+  standalone: true,
   imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './att-jogo.html',
   styleUrl: './att-jogo.css',
@@ -26,6 +27,8 @@ export class AttJogo implements OnInit {
 
   // Idiomas selecionados enquanto edita
   public idiomasSelecionados: string[] = [];
+
+  @ViewChild('editor') editor!: ElementRef<HTMLDivElement>;
 
   // Campo auxiliar para data (formato yyyy-MM-dd usado pelo input type="date")
   public editDataLancamento: string = '';
@@ -50,6 +53,7 @@ export class AttJogo implements OnInit {
       },
       new Date(), // dataLancamento
       [],      // idiomas
+      '',      // sobre
       0,       // avaliacoesPositivas
       0        // avaliacoesNegativas
     );
@@ -65,6 +69,10 @@ export class AttJogo implements OnInit {
 
   ngOnInit(): void {
     this.carregarJogos();
+  }
+
+  ngAfterViewInit(): void {
+    // nothing immediate; editor content is set when iniciarEdicao is called
   }
 
   logout() {
@@ -130,6 +138,13 @@ export class AttJogo implements OnInit {
 
     this.estaEditando = true;
     this.mensagem = `Editando: ${jogo.nome} (ID: ${jogo.id})`;
+
+    // Populate editor HTML after view updates
+    setTimeout(() => {
+      if (this.editor && this.editor.nativeElement) {
+        this.editor.nativeElement.innerHTML = this.jogoParaEditar.sobre || '';
+      }
+    }, 0);
   }
 
   /**
@@ -158,11 +173,19 @@ export class AttJogo implements OnInit {
       },
       new Date(), // dataLancamento
       [],      // idiomas
+      '',      // sobre
       0,       // avaliacoesPositivas
       0        // avaliacoesNegativas
     );
     this.idiomasSelecionados = [];
     this.editDataLancamento = '';
+
+    // clear editor
+    setTimeout(() => {
+      if (this.editor && this.editor.nativeElement) {
+        this.editor.nativeElement.innerHTML = '';
+      }
+    }, 0);
   }
 
   public toggleIdioma(idioma: string): void {
@@ -189,6 +212,11 @@ export class AttJogo implements OnInit {
     this.jogoParaEditar.idiomas = [...this.idiomasSelecionados];
     this.jogoParaEditar.dataLancamento = this.editDataLancamento ? new Date(this.editDataLancamento) : this.jogoParaEditar.dataLancamento;
 
+    // Capture rich-text HTML from editor
+    if (this.editor && this.editor.nativeElement) {
+      this.jogoParaEditar.sobre = this.editor.nativeElement.innerHTML || '';
+    }
+
     this.jogoService.atualizarJogo(this.jogoParaEditar.id, this.jogoParaEditar).subscribe({
       next: (jogoAtualizado) => {
         // 1. Atualiza a lista local (Front-end)
@@ -207,5 +235,23 @@ export class AttJogo implements OnInit {
         console.error(erro);
       }
     });
+  }
+
+  public applyFormat(command: string, value?: string) {
+    try {
+      document.execCommand(command, false, value ?? undefined);
+      if (this.editor && this.editor.nativeElement) {
+        this.editor.nativeElement.focus();
+      }
+    } catch (e) {
+      // Silently ignore unsupported format
+    }
+  }
+
+  public createLink(): void {
+    const url = window.prompt('Insira a URL:');
+    if (url && this.editor) {
+      this.applyFormat('createLink', url);
+    }
   }
 }

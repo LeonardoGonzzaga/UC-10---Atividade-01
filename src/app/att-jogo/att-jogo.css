@@ -219,3 +219,25 @@ h2 {
 .btn-cancelar:hover {
     background-color: #5a6268;
 }
+
+/* Rich text editor styles used in edition form */
+.rte-toolbar {
+    display:flex;
+    gap:8px;
+    align-items:center;
+    margin-bottom:8px;
+}
+.rte-btn{
+    padding:6px 10px;
+    border-radius:6px;
+    border:1px solid #ddd;
+    background:#fff;
+    cursor:pointer;
+    font-weight:700;
+}
+.rte-btn:hover{ background:#f3f6fb }
+.rte-editor{
+    min-height:120px;
+    max-height:400px;
+    overflow:auto;
+}

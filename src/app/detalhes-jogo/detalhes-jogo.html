@@ -26,6 +26,12 @@
                 </div>
                 <p class="jogo-descricao">{{ jogo.descricao }}</p>
                 
+                <div class="sobre-section" *ngIf="jogo.sobre">
+                    <h2>Sobre este Jogo</h2>
+                    <!-- Render rich HTML for 'sobre' -->
+                    <div class="sobre-text" [innerHTML]="trustedSobre"></div>
+                </div>
+                
                 <div class="avaliacao">
                     <button class="botao-avaliacao positivo" (click)="avaliarJogo(true)">
                         👍 {{jogo.avaliacoesPositivas}}
@@ -89,8 +95,5 @@
             </div>
         </div>
 
-        <div class="acoes">
-            <a routerLink="/home" class="botao-voltar">Voltar para a loja</a>
-        </div>
     </div>
 </div>

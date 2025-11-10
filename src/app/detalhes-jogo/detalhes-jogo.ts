@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { JogoService } from '../services/jogos.service';
 import { Jogos } from '../models/jogos.models';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-detalhes-jogo',
@@ -15,10 +16,12 @@ export class DetalhesJogo implements OnInit {
   jogo?: Jogos;
   loading = true;
   error = '';
+  trustedSobre?: SafeHtml;
 
   constructor(
     private route: ActivatedRoute,
     private jogoService: JogoService
+    , private sanitizer: DomSanitizer
   ) { }
 
   ngOnInit(): void {
@@ -35,6 +38,8 @@ export class DetalhesJogo implements OnInit {
     this.jogoService.getJogo(id).subscribe({
       next: (jogo) => {
         this.jogo = jogo;
+        // sanitize HTML so we can safely bind with [innerHTML]
+        this.trustedSobre = this.sanitizer.bypassSecurityTrustHtml(jogo.sobre || '');
         this.loading = false;
       },
       error: (error) => {
@@ -60,6 +65,7 @@ export class DetalhesJogo implements OnInit {
     this.jogoService.avaliarJogo(this.jogo.id, positiva).subscribe({
       next: (jogoAtualizado) => {
         this.jogo = jogoAtualizado;
+        this.trustedSobre = this.sanitizer.bypassSecurityTrustHtml(this.jogo.sobre || '');
         this.loading = false;
       },
       error: (error) => {

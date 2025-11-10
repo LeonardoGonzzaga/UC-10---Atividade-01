@@ -38,12 +38,14 @@ router.post('/', async (req, res) => {
         desenvolvedora: req.body.desenvolvedora || '',
         requisitosMinimos: req.body.requisitosMinimos || {},
         dataLancamento: req.body.dataLancamento ? new Date(req.body.dataLancamento) : undefined,
+        sobre: req.body.sobre || '',
         idiomas: Array.isArray(req.body.idiomas) ? req.body.idiomas : (req.body.idiomas ? [req.body.idiomas] : []),
         avaliacoesPositivas: req.body.avaliacoesPositivas || 0,
         avaliacoesNegativas: req.body.avaliacoesNegativas || 0
     });
 
     try {
+        console.log('POST /api/jogos payload.sobre:', req.body.sobre);
         const novoJogo = await jogo.save();
         res.status(201).json(novoJogo);
     } catch (error) {
@@ -65,15 +67,17 @@ router.put('/:id', async (req, res) => {
         jogo.preco = (req.body.preco !== undefined) ? req.body.preco : jogo.preco;
         jogo.imagemUrl = req.body.imagemUrl || jogo.imagemUrl;
 
-        // Novos campos
+    // Novos campos
         jogo.genero = req.body.genero || jogo.genero;
         jogo.publisher = req.body.publisher || jogo.publisher;
         jogo.desenvolvedora = req.body.desenvolvedora || jogo.desenvolvedora;
+    jogo.sobre = (req.body.sobre !== undefined) ? req.body.sobre : jogo.sobre;
         jogo.requisitosMinimos = req.body.requisitosMinimos || jogo.requisitosMinimos;
         jogo.dataLancamento = req.body.dataLancamento ? new Date(req.body.dataLancamento) : jogo.dataLancamento;
         jogo.idiomas = Array.isArray(req.body.idiomas) ? req.body.idiomas : (req.body.idiomas ? [req.body.idiomas] : jogo.idiomas);
 
-        const jogoAtualizado = await jogo.save();
+    console.log('PUT /api/jogos/:id payload.sobre:', req.body.sobre);
+    const jogoAtualizado = await jogo.save();
         res.json(jogoAtualizado);
     } catch (error) {
         res.status(400).json({ message: error.message });
