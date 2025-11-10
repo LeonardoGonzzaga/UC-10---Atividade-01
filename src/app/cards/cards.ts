@@ -3,10 +3,11 @@ import { Jogos } from '../models/jogos.models';
 import { JogoService } from '../services/jogos.service'; 
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-cards',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './cards.html',
   styleUrl: './cards.css',
 })

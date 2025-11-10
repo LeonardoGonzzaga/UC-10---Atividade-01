@@ -18,6 +18,7 @@
                 <div class="card-actions">
                     <p class="preco">{{ jogo.preco | currency: 'BRL' }}</p>
                     <button class="botao-comprar">Comprar</button>
+                    <button class="botao-saiba-mais" [routerLink]="['/jogo', jogo.id]">Saiba Mais</button>
                 </div>
             </div>
         </div>

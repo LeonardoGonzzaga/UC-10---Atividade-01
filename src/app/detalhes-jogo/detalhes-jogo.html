@@ -1,0 +1,28 @@
+<div class="detalhes-container">
+    <!-- Loading state -->
+    <div *ngIf="loading" class="loading">
+        Carregando informações do jogo...
+    </div>
+
+    <!-- Error state -->
+    <div *ngIf="error" class="error">
+        {{ error }}
+    </div>
+
+    <!-- Game details -->
+    <div *ngIf="!loading && !error && jogo" class="jogo-content">
+        <div class="jogo-header">
+            <div class="imagem-container">
+                <img [src]="jogo.imagemUrl" [alt]="jogo.nome" 
+                     onerror="this.src='https://i.imgur.com/50SVSXK.jpeg'">
+            </div>
+            
+            <div class="info-container">
+                <h1 class="jogo-titulo">{{ jogo.nome }}</h1>
+                <p class="jogo-preco">{{ formatarPreco(jogo.preco) }}</p>
+                <p class="jogo-descricao">{{ jogo.descricao }}</p>
+                <a routerLink="/" class="botao-voltar">Voltar para a loja</a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -105,6 +105,22 @@
     background-color: #0056b3;
 }
 
+.botao-saiba-mais {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    margin-left: 10px;
+}
+
+.botao-saiba-mais:hover {
+    background-color: #5a6268;
+}
+
 /* --- Responsividade (Para dispositivos menores) --- */
 @media (max-width: 900px) {
     .card-grid {

@@ -25,7 +25,6 @@ interface slide {
 export class Carrossel implements OnInit, AfterViewInit, OnDestroy { 
 
   slides: slide[] = [];
-  
   currentIndex: number = 0;
   totalItems: number = this.slides.length;
   
