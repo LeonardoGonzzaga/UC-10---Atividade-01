@@ -2,17 +2,13 @@ import { Component, signal } from '@angular/core';
 import { RouterLink, Router } from "@angular/router";
 import { AuthService } from '../services/auth.service';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms'; // <-- IMPORTANTE para [ngModel]
-import { JogoService } from '../services/jogos.service'; // <-- Serviço de Jogo
-import { Jogos } from '../models/jogos.models'; // <-- Modelo de Jogo
+import { FormsModule } from '@angular/forms'; 
+import { JogoService } from '../services/jogos.service'; 
+import { Jogos } from '../models/jogos.models'; 
 
 @Component({
   selector: 'app-header',
-  imports: [
-    RouterLink, 
-    CommonModule, 
-    FormsModule // <-- ADICIONADO AQUI
-  ],
+  imports: [RouterLink, CommonModule, FormsModule],
   templateUrl: './header.html',
   styleUrl: './header.css',
   standalone: true

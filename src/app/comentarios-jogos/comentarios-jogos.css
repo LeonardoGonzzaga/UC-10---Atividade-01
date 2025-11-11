@@ -1,0 +1,76 @@
+/* Estilos para a seção de Comentários */
+.comentarios-section {
+    /* NOVO: Adiciona um separador superior discreto */
+    border-top: 2px solid #555583; /* Cor de fundo/borda suave */
+    margin-top: 30px; /* Espaçamento da seção anterior */
+    padding: 20px 0 20px 0; /* Padding superior e inferior para a seção */
+}
+
+.comentarios-section h2 {
+    color: #007bff; /* Azul Principal para o título da seção */
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    padding-left: 20px; /* Alinha o título */
+}
+
+.adicionar-comentario-wrapper {
+    margin: 0 20px 30px 20px; /* Aplica margem lateral */
+}
+
+.comentarios-section hr {
+    border: 0;
+    height: 1px;
+    background-color: #31317c; /* Linha separadora na cor de fundo secundária */
+    margin: 20px 20px;
+}
+
+.comentarios-count {
+    color: #415A8A; /* Azul Escuro para a contagem */
+    font-size: 1.2em;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    padding-left: 20px; /* Alinha a contagem */
+}
+
+.comentario-item {
+    background-color: #F8F8FF; /* Fundo levemente colorido para cada comentário */
+    padding: 15px;
+    margin: 0 20px 15px 20px; /* Aplica margem lateral e inferior */
+    border-left: 5px solid #007bff; /* Barra lateral com o Azul Principal para destaque */
+    border-radius: 4px;
+}
+
+.comentario-header {
+    margin-bottom: 8px;
+    font-size: 0.95em;
+    color: #333333;
+    display: flex;
+    justify-content: space-between; /* Alinha nome e data */
+    align-items: center;
+}
+
+.comentario-header strong {
+    color: #415A8A; /* Nome do usuário em Azul Escuro */
+    font-size: 1.1em;
+}
+
+.comentario-data {
+    /* NOVO: Aumenta o tamanho da fonte para a data e hora */
+    color: #af7b0b; /* Data com cor mais discreta */
+    font-size: 1em; 
+    font-weight: 500; /* Deixa um pouco mais visível */
+    font-weight: bold;
+}
+
+.comentario-texto {
+    margin-top: 0;
+    line-height: 1.6;
+    color: #555555;
+    white-space: pre-wrap; /* Preserva quebras de linha/espaços no texto */
+}
+
+.comentarios-section ng-template p {
+    color: #6c757d; /* Cor neutra para a mensagem de "sem comentários" */
+    font-style: italic;
+    padding: 10px 20px; /* Alinha a mensagem */
+}

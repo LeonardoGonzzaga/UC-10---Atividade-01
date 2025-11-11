@@ -41,6 +41,7 @@ mongoose.connect(process.env.MONGODB_URI, {
 // Rotas
 app.use('/api/jogos', require('./routes/jogos'));
 app.use('/api/usuarios', require('./routes/usuarios'));
+app.use('/api/comentarios', require('./routes/comentarios'));
 
 const PORT = process.env.PORT || 3000;
 // Health check endpoint

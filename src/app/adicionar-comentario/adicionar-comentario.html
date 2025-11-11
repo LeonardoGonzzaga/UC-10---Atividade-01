@@ -1,0 +1,40 @@
+<div class="comentario-form">
+    <h4>Deixe seu comentário</h4>
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+        
+        <div class="form-group">
+            <label for="usuario">Seu Nome:</label>
+            <input 
+                type="text" 
+                id="usuario"
+                name="usuario" 
+                [(ngModel)]="novoComentario.usuario" 
+                required 
+                minlength="3"
+                placeholder="Seu nome ou apelido"
+                class="form-control"
+            >
+            </div>
+
+        <div class="form-group">
+            <label for="texto">Comentário:</label>
+            <textarea 
+                id="texto"
+                name="texto" 
+                [(ngModel)]="novoComentario.texto" 
+                required 
+                maxlength="500"
+                placeholder="Digite seu comentário (máximo 500 caracteres)"
+                class="form-control"
+            ></textarea>
+        </div>
+
+        <button 
+            type="submit" 
+            [disabled]="f.invalid"
+            class="btn btn-primary"
+        >
+            Postar Comentário
+        </button>
+    </form>
+</div>

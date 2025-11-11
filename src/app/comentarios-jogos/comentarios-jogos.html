@@ -1,0 +1,32 @@
+<div class="comentarios-section">
+    <h2>💬 Comentários</h2>
+
+    <!-- Adicionar Comentário (Requer o jogoId que foi lido da rota) -->
+    <div class="adicionar-comentario-wrapper">
+        <app-adicionar-comentario 
+            [jogoId]="jogoId" 
+            (comentarioAdicionado)="handleComentarioAdicionado()">
+        </app-adicionar-comentario>
+    </div>
+
+    <hr>
+    
+    <!-- Lista de Comentários -->
+    <div *ngIf="comentarios.length > 0; else semComentarios">
+        <h3 class="comentarios-count">{{ comentarios.length }} Comentário(s):</h3>
+        
+        <div *ngFor="let c of comentarios" class="comentario-item">
+            <div class="comentario-header">
+                <strong>{{ c.usuario }}</strong> 
+                <!-- Formatando a data de criação -->
+                <span class="comentario-data"> - {{ c.dataCriacao | date:'dd/MM/yyyy HH:mm' }}</span>
+            </div>
+            <p class="comentario-texto">{{ c.texto }}</p>
+
+        </div>
+    </div>
+
+    <ng-template #semComentarios>
+        <p>Nenhum comentário ainda. Seja o primeiro a postar!</p>
+    </ng-template>
+</div>

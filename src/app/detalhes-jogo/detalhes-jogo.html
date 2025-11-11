@@ -97,3 +97,11 @@
 
     </div>
 </div>
+
+<div class="comentarios-area">
+    <!-- O componente ComentariosJogosComponent agora lê o ID da rota, 
+         então o input [jogoId] não é mais necessário para ele. -->
+    <app-comentarios-jogos 
+        *ngIf="jogoId">
+    </app-comentarios-jogos>
+</div>
