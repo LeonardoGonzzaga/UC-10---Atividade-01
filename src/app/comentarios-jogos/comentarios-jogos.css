@@ -69,8 +69,10 @@
     white-space: pre-wrap; /* Preserva quebras de linha/espaços no texto */
 }
 
-.comentarios-section ng-template p {
-    color: #6c757d; /* Cor neutra para a mensagem de "sem comentários" */
-    font-style: italic;
+.semComentarios {
+    color: #040c85; /* Cor neutra para a mensagem de "sem comentários" */
+    font-style: bold;
     padding: 10px 20px; /* Alinha a mensagem */
+    text-align: center;
+    font-size: 1.7em; 
 }
