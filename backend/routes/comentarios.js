@@ -1,10 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const Comentario = require('../models/comentarios');
-const Jogo = require('../models/Jogo'); // Necessário para verificar a existência do jogo
-
-// Rota 1: POST /api/comentarios
-// Adiciona um novo comentário
+const Jogo = require('../models/Jogo');
+const Comentario = require('../models/comentario');
+ 
 router.post('/', async (req, res) => {
     const { jogoId, usuario, texto } = req.body;
     
