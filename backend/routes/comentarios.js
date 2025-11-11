@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Comentario = require('../models/Comentario');
+const Comentario = require('../models/comentarios');
 const Jogo = require('../models/Jogo'); // Necessário para verificar a existência do jogo
 
 // Rota 1: POST /api/comentarios
