@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, Inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -24,6 +24,24 @@ export class JogoService {
       map(arr => arr.map(j => ({ ...j, id: j._id || j.id })) as Jogos[])
     );
   }
+
+  // NOVO MÉTODO: Chama o endpoint de busca da API
+  public searchJogos(query: string): Observable<Jogos[]> {
+    if (!query || query.trim() === '') {
+        return new Observable(observer => {
+            observer.next([]); // Retorna array vazio se a query for vazia
+            observer.complete();
+        });
+    }
+
+    const urlSearch = `${this.apiUrl}/search`;
+    const params = new HttpParams().set('q', query.trim()); // Adiciona q=termo na URL
+    
+    return this.httpClient.get<any[]>(urlSearch, { params }).pipe(
+      map(arr => arr.map(j => ({ ...j, id: j._id || j.id })) as Jogos[])
+    );
+  }
+
 
   public cadastrarJogo(jogo: Jogos): Observable<Jogos> {
     return this.httpClient.post<any>(this.apiUrl, jogo).pipe(

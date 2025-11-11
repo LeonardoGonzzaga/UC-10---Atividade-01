@@ -1,16 +1,85 @@
 <header class="header">
-        <div class="header-content">
-            <a href="index.html" aria-label="Voltar para a página inicial" class="logo-container">
+    <div class="header-content">
+        
+        <input type="checkbox" id="menu-toggle">
+
+        <div class="main-header-row">
+            
+            <a routerLink="/" aria-label="Voltar para a página inicial" class="logo-container">
                 <img src="https://i.imgur.com/ASuXEn4.png" alt="Logo da Estouro">
             </a>
 
-            <input type="checkbox" id="menu-toggle">
-            <label for="menu-toggle" class="menu-icon" aria-label="Abrir Menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </label>
+            <div class="search-container-desktop">
+                <input 
+                    type="text"
+                    placeholder="Buscar jogos, gêneros..."
+                    [ngModel]="termoBusca()"
+                    (ngModelChange)="termoBusca.set($event); onSearchChange()"
+                    (keydown.enter)="onEnterPress()"
+                    (focus)="onFocusSearch()"
+                    (blur)="onBlurSearch()"
+                    class="search-input"
+                    aria-label="Barra de pesquisa de jogos"
+                >
+                <div class="search-results-dropdown" *ngIf="buscaAtiva()">
+                    <div *ngFor="let jogo of resultadosBusca()" class="search-result-item" (mousedown)="goToGameDetails(jogo.id)">
+                        <img [src]="jogo.imagemUrl" alt="{{ jogo.nome }}" class="result-image">
+                        <span class="result-name">{{ jogo.nome }}</span>
+                        <span class="result-genre">{{ jogo.genero }}</span>
+                    </div>
+                    <div *ngIf="resultadosBusca().length === 0" class="no-results">
+                        Nenhum resultado encontrado.
+                    </div>
+                </div>
+            </div>
 
+            <div class="action-icons-group">
+                <div class="icones">
+                    <div class="action-icons">
+                        <div *ngIf="userName$ | async as userName" class="welcome-message">
+                            Olá, {{userName}}!
+                        </div>
+                        <a (click)="onLoginClick()" style="cursor: pointer;" aria-label="Login" class="icon-link">
+                            <img src="https://i.imgur.com/8PcE2gU.png" alt="Login Icon">
+                        </a>
+                        <a href="#" aria-label="Carrinho de Compras" class="icon-link">
+                            <img src="https://i.imgur.com/XInjPGn.png" alt="Carrinho Icon">
+                        </a>
+                    </div>
+                </div>
+                <label for="menu-toggle" class="menu-icon" aria-label="Abrir Menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </label>
+            </div>
+        </div>
+        
+        <div class="search-container-mobile">
+            <input 
+                type="text"
+                placeholder="Buscar jogos, gêneros..."
+                [ngModel]="termoBusca()"
+                (ngModelChange)="termoBusca.set($event); onSearchChange()"
+                (keydown.enter)="onEnterPress()"
+                (focus)="onFocusSearch()"
+                (blur)="onBlurSearch()"
+                class="search-input"
+                aria-label="Barra de pesquisa de jogos"
+            >
+            <div class="search-results-dropdown" *ngIf="buscaAtiva()">
+                <div *ngFor="let jogo of resultadosBusca()" class="search-result-item" (mousedown)="goToGameDetails(jogo.id)">
+                    <img [src]="jogo.imagemUrl" alt="{{ jogo.nome }}" class="result-image">
+                    <span class="result-name">{{ jogo.nome }}</span>
+                    <span class="result-genre">{{ jogo.genero }}</span>
+                </div>
+                <div *ngIf="resultadosBusca().length === 0" class="no-results">
+                    Nenhum resultado encontrado.
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-menu-row">
             <nav class="nav-menu">
                 <ul id="menu">
                     <li><a routerLink="">PC GAMER</a></li>
@@ -21,20 +90,6 @@
                     <li><a routerLink="">CONTATOS</a></li>
                 </ul>
             </nav>
-        <div class="icones">   
-            <div class="action-icons">
-                <div *ngIf="userName$ | async as userName" class="welcome-message">
-                    Olá, {{userName}}!
-                </div>
-                <a (click)="onLoginClick()" style="cursor: pointer;" aria-label="Login" class="icon-link">
-                    <img src="https://i.imgur.com/udGvVFt.png" alt="Login Icon">
-                </a>
-                <a href="#" aria-label="Carrinho de Compras" class="icon-link">
-                    <img src="https://i.imgur.com/v63NDKn.png" alt="Carrinho Icon">
-                </a>
-            </div>
         </div>
     </div>
-    </header>
-
-
+</header>

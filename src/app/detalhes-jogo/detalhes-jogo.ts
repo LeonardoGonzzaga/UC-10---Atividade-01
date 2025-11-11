@@ -4,6 +4,8 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 import { JogoService } from '../services/jogos.service';
 import { Jogos } from '../models/jogos.models';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { switchMap } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-detalhes-jogo',
@@ -20,26 +22,38 @@ export class DetalhesJogo implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private jogoService: JogoService
-    , private sanitizer: DomSanitizer
+    private jogoService: JogoService,
+    private sanitizer: DomSanitizer
   ) { }
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    if (id) {
-      this.carregarJogo(id);
-    } else {
-      this.error = 'ID do jogo não fornecido';
-      this.loading = false;
-    }
-  }
-
-  private carregarJogo(id: string): void {
-    this.jogoService.getJogo(id).subscribe({
+    // Ao invés de usar o snapshot (que lê o ID apenas na inicialização),
+    // assinamos as mudanças nos parâmetros da URL.
+    this.route.params.pipe(
+      // 1. Usa o switchMap para cancelar a requisição anterior e iniciar uma nova
+      // quando o parâmetro 'id' mudar (navegação de X para Y).
+      switchMap(params => {
+        const id = params['id'];
+        
+        if (id) {
+          this.loading = true; // Define o loading como true para o novo carregamento
+          this.error = ''; // Limpa o erro
+          return this.jogoService.getJogo(id);
+        } else {
+          this.error = 'ID do jogo não fornecido';
+          this.loading = false;
+          return of(undefined); // Retorna um Observable vazio para encerrar
+        }
+      })
+    ).subscribe({
       next: (jogo) => {
-        this.jogo = jogo;
-        // sanitize HTML so we can safely bind with [innerHTML]
-        this.trustedSobre = this.sanitizer.bypassSecurityTrustHtml(jogo.sobre || '');
+        if (jogo) {
+          this.jogo = jogo;
+          // Sanitiza o HTML para exibição
+          this.trustedSobre = this.sanitizer.bypassSecurityTrustHtml(jogo.sobre || '');
+        } else {
+          this.jogo = undefined;
+        }
         this.loading = false;
       },
       error: (error) => {
@@ -50,6 +64,8 @@ export class DetalhesJogo implements OnInit {
     });
   }
 
+  // Seus métodos de formatação e avaliação permanecem inalterados
+  
   // Formata o preço para exibição em reais
   formatarPreco(preco: number): string {
     return new Intl.NumberFormat('pt-BR', {

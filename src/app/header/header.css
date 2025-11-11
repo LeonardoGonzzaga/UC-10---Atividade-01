@@ -1,5 +1,5 @@
 /* ==================================== */
-/* 2. HEADER E NAVEGAÇÃO */
+/* 2. HEADER E NAVEGAÇÃO (Mobile First) */
 /* ==================================== */
 
 .header {
@@ -8,19 +8,52 @@
     border-bottom: 6px solid #3E508C;
 }
 
+/* O input real do menu está escondido, mas é o cérebro */
+#menu-toggle {
+    display: none;
+}
+
 .header-content {
     max-width: 1300px;
     padding: 5px 15px; 
     margin: 0 auto; 
     display: flex; 
-    justify-content: space-around; 
+    flex-direction: column; /* Coluna para empilhar Linha 1, Busca e Linha 2 */
+    gap: 10px;
+}
+
+/* Linha Principal (Mobile: Logo, Icones/Hambúrguer) */
+.main-header-row {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
+    width: 100%;
+}
+
+/* Esconde a barra de busca do DESKTOP no mobile */
+.search-container-desktop {
+    display: none; 
+}
+
+/* Mostra a barra de busca do MOBILE */
+.search-container-mobile {
+    display: block; 
+    position: relative; 
+    width: 100%;
+}
+
+/* Mobile: Agrupa o menu ícone e os ícones de ação */
+.action-icons-group {
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
 
 /* Logo */
 .logo-container img {
-    height: 60px; /* Reduzido o tamanho para mobile */
+    height: 60px;
     margin: 0;
+    display: block; /* Evita espaços extras */
 }
 
 /* Ícones de Ação */
@@ -30,7 +63,7 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     border-radius: 8px;
     position: relative;
-    margin-bottom: 20px; /* Espaço para a mensagem de boas-vindas */
+    margin-bottom: 0; 
 }
 
 .action-icons a {
@@ -47,8 +80,9 @@
     position: relative;
 }
 
+/* Mensagem de boas-vindas (Mobile) */
 .welcome-message {
-    position: absolute;
+    position: absolute; /* Flutua abaixo dos ícones */
     bottom: -40px;
     right: 0;
     color: #3E508C;
@@ -59,25 +93,70 @@
     padding: 2px 8px;
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-left: 0;
 }
 
 .action-icons img {
-    width: 28px;   
-    height: 28px;  
+    width: 33px; 
+    height: 33px;
     object-fit: contain; 
-    margin: 0;     
+    margin: 0;
 }
 
-/* Esconde o menu por padrão (será exibido verticalmente no mobile) */
+/* --- ESTILOS DA BARRA DE PESQUISA (Usado em ambos, Mobile e Desktop) --- */
+.search-input {
+    width: 100%;
+    padding: 8px 15px;
+    border: 2px solid #3E508C; 
+    border-radius: 20px; 
+    background-color: #f7f7f7; 
+    color: #3E508C;
+    transition: all 0.3s;
+    font-size: 16px;
+}
+
+.search-input::placeholder {
+    color: #3E508C80;
+}
+
+.search-input:focus {
+    border-color: #5d75bc;
+    box-shadow: 0 0 8px rgba(62, 80, 140, 0.4);
+    outline: none;
+}
+
+.search-results-dropdown {
+    position: absolute;
+    top: 100%; 
+    left: 0;
+    width: 100%;
+    background-color: #f7f7f7;
+    border: 1px solid #3E508C;
+    border-top: none;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    max-height: 350px;
+    overflow-y: auto;
+    z-index: 100; /* Garante que fique sobre outros elementos */
+}
+.search-result-item{display:flex;align-items:center;padding:10px 15px;cursor:pointer;border-bottom:1px solid #ccc;transition:background-color .2s}.search-result-item:last-child{border-bottom:none}.search-result-item:hover{background-color:#94B4F0;color:#3E508C}.result-image{width:40px;height:40px;object-fit:cover;border-radius:4px;margin-right:10px}.result-name{flex-grow:1;font-weight:700;color:#3E508C}.search-result-item:hover .result-name,.search-result-item:hover .result-genre{color:#fff}.result-genre{color:#777;font-size:.8em}.no-results{padding:15px;text-align:center;color:#3E508C;font-style:italic}
+
+
+/* --- NAVEGAÇÃO (MENU HAMBÚRGUER) --- */
+
+/* A linha de navegação (Linha 2) fica escondida no mobile */
+.nav-menu-row {
+    width: 100%;
+    display: none; 
+}
+
+/* O menu em si (<ul>) também fica escondido */
 #menu {
     list-style: none; 
     padding: 15px 0; 
-    margin: 10; 
-    display: none; /* ESCONDIDO POR PADRÃO NO MOBILE */
+    margin: 10px 0 0 0; /* Margem superior para separar da busca */
+    display: none; 
     flex-direction: column;
-    position: absolute;
-    top: 80px; /* Abaixo do header */
-    left: 0;
     width: 100%;
     background-color: #f7f7f7;
     z-index: 10;
@@ -101,7 +180,7 @@
     transition: background-color 0.5s;
 }
 
-/* Estilo do ícone hambúrguer */
+/* Estilo do ícone hambúrguer (Label) */
 .menu-icon {
     display: flex;
     flex-direction: column;
@@ -110,31 +189,21 @@
     height: 25px;
     cursor: pointer;
 }
+.menu-icon .bar{display:block;width:100%;height:3px;background-color:#3E508C;transition:all .3s ease-in-out}
 
-.menu-icon .bar {
-    display: block;
-    width: 100%;
-    height: 3px;
-    background-color: #3E508C;
-    transition: all 0.3s ease-in-out;
+
+/* =================================================================== */
+/* CORREÇÃO: O seletor agora funciona.                                 */
+/* Quando o input (irmão) está checado, ele mostra o nav-menu-row,     */
+/* e o CSS dentro do nav-menu-row mostra o #menu.                      */
+/* =================================================================== */
+#menu-toggle:checked ~ .nav-menu-row {
+    display: block; /* Mostra a Linha 2 */
+}
+#menu-toggle:checked ~ .nav-menu-row #menu {
+    display: flex; /* Mostra o Menu <ul> */
 }
 
-/* Esconde o checkbox */
-#menu-toggle {
-    display: none;
-}
-
-/* Mostra o menu quando o checkbox é marcado (funcionalidade do hambúrguer) */
-#menu-toggle:checked ~ .nav-menu #menu {
-    display: flex;
-}
-
-/* Esconde o menu-icon em desktop */
-@media screen and (min-width: 992px) {
-    .menu-icon {
-        display: none;
-    }
-}
 
 /* ==================================== */
 /* 3. MEDIA QUERY PARA DESKTOP (MAIOR OU IGUAL A 992px) */
@@ -142,43 +211,108 @@
 
 @media screen and (min-width: 992px) {
 
-    /* -- HEADER E NAVEGAÇÃO -- */
+    /* Esconde o menu-icon */
+    .menu-icon {
+        display: none;
+    }
+    
+    /* Garante que o menu do mobile não apareça no desktop */
+    #menu-toggle:checked ~ .nav-menu-row {
+        display: block; /* A linha de menu fica visível... */
+    }
+    #menu-toggle:checked ~ .nav-menu-row #menu {
+        display: flex; /* ...mas o seletor de :checked não se aplica mais aqui */
+    }
+
+    /* --- LAYOUT DO HEADER --- */
+    .header-content {
+        gap: 0; /* Remove o gap entre as linhas */
+    }
+    
+    /* Linha Principal: LOGO | BUSCA | ÍCONES */
+    .main-header-row {
+        justify-content: flex-start;
+        gap: 30px; /* Espaço entre Logo, Busca e Ícones */
+        padding-bottom: 10px; /* Espaço entre a linha principal e o menu de navegação */
+    }
+    
     .logo-container img {
         height: 80px; /* Volta ao tamanho maior */
     }
     
-    .nav-menu {
-        flex-grow: 1; /* Permite que a navegação ocupe o espaço no meio */
-        margin: 0 40px;
+    /* Torna a busca DESKTOP VISÍVEL e com flex-grow */
+    .search-container-desktop {
+        display: block; 
+        position: relative; 
+        flex-grow: 1; /* Ocupa o máximo de espaço possível */
+        max-width: 600px; /* Limite máximo para a busca */
+    }
+
+    /* Esconde a busca MOBILE */
+    .search-container-mobile {
+        display: none;
+    }
+    
+    .action-icons-group {
+        display: flex; /* Garante o alinhamento horizontal */
+        align-items: center;
+        gap: 0;
+    }
+
+    /* Mensagem de boas-vindas (Desktop) */
+    .welcome-message {
+        position: static; 
+        order: 2; /* Move a mensagem para depois dos ícones */
+        font-size: 14px;
+        font-weight: 500;
+        background-color: transparent; 
+        box-shadow: none;
+        padding: 0;
+        margin-left: 20px; /* Espaçamento dos ícones */
+        color: #3E508C;
+        white-space: nowrap;
+    }
+    
+    /* --- LINHA DE NAVEGAÇÃO SECUNDÁRIA --- */
+    .nav-menu-row {
+        display: block !important; /* Garante que a Linha 2 apareça */
+        background-color: #3E508C; 
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        padding: 5px 15px; 
     }
 
     #menu {
-        /* Reverte para o layout horizontal de desktop */
-        display: flex !important; /* Força a exibição para desktop */
+        display: flex !important; /* Layout horizontal de desktop */
         flex-direction: row;
         position: static;
-        background-color: #FFFFFF;
+        background-color: transparent;
         list-style: none; 
-        padding: 20px 17px; 
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        padding: 0; 
+        box-shadow: none;
         border-bottom: none;
-        justify-content: center;
-        gap: 10px;
+        justify-content: center; /* Centralizado */
+        gap: 30px;
+        flex-wrap: nowrap;
+        margin: 0;
+        width: 100%;
+    }
+    
+    .nav-menu li {
+        padding: 0;
+        white-space: nowrap;
     }
     
     #menu a{
         padding: 5px 10px;
         text-align: left;
+        color: #FFFFFF; 
+        font-size: 15px;
     }
     
     #menu a:hover {
-        background-color: lightblue; 
-        color: darkblue; 
+        background-color: rgba(255, 255, 255, 0.2); 
+        color: #fff; 
         border-radius: 4px;
-    }
-    
-    /* Remove o ícone do hambúrguer no desktop */
-    .menu-icon {
-        display: none;
     }
 }

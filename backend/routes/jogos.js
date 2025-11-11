@@ -12,6 +12,33 @@ router.get('/', async (req, res) => {
     }
 });
 
+// Rota de Pesquisa: GET /api/jogos/search?q=termo_de_busca
+router.get('/search', async (req, res) => {
+    try {
+        const termoBusca = req.query.q;
+
+        if (!termoBusca) {
+            return res.json([]);
+        }
+
+        const query = {
+            $or: [
+                { nome: { $regex: termoBusca, $options: 'i' } },
+                { descricao: { $regex: termoBusca, $options: 'i' } },
+                { genero: { $regex: termoBusca, $options: 'i' } },
+                { publisher: { $regex: termoBusca, $options: 'i' } }
+            ]
+        };
+
+        const jogosEncontrados = await Jogo.find(query).limit(50);
+
+        res.json(jogosEncontrados);
+
+    } catch (error) {
+        console.error("Erro na busca de jogos:", error);
+        res.status(500).json({ message: 'Erro ao buscar jogos', error: error.message });
+    }
+});
 // Obter um jogo específico
 router.get('/:id', async (req, res) => {
     try {
