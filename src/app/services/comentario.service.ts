@@ -1,29 +1,28 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Comentario } from '../models/comentario.models'; 
-import { map } from 'rxjs/operators'; 
+import { Comentario } from '../models/comentario.models';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ComentarioService {
-  // A URL base será injetada e ajustada como feito no JogoService
-  private readonly apiUrl: string; 
+  private readonly apiUrl: string;
 
   constructor(
     private httpClient: HttpClient,
-    @Inject('BASE_API_URL') baseApiUrl: string 
+    @Inject('BASE_API_URL') baseApiUrl: string
   ) {
-    this.apiUrl = `${baseApiUrl}/comentarios`; 
+    this.apiUrl = `${baseApiUrl}/comentarios`;
   }
 
   public getComentariosPorJogo(jogoId: string): Observable<Comentario[]> {
     return this.httpClient.get<any[]>(`${this.apiUrl}/${jogoId}`).pipe(
-  
-      map(arr => arr.map(c => ({ 
-        ...c, 
-        _id: c._id || c.id, 
+
+      map(arr => arr.map(c => ({
+        ...c,
+        _id: c._id || c.id,
         dataCriacao: new Date(c.dataCriacao),
         updatedAt: new Date(c.updatedAt)
       })) as Comentario[])
@@ -32,8 +31,8 @@ export class ComentarioService {
 
   public adicionarComentario(comentario: { jogoId: string, usuario: string, texto: string }): Observable<Comentario> {
     return this.httpClient.post<any>(this.apiUrl, comentario).pipe(
-      map(c => ({ 
-        ...c, 
+      map(c => ({
+        ...c,
         _id: c._id || c.id,
         dataCriacao: new Date(c.dataCriacao),
         updatedAt: new Date(c.updatedAt)
@@ -43,10 +42,9 @@ export class ComentarioService {
 
   public atualizarComentario(id: string, novoTexto: string): Observable<Comentario> {
     const urlAtualizar = `${this.apiUrl}/update/${id}`;
-    // Envia o novo texto no corpo da requisição
     return this.httpClient.put<any>(urlAtualizar, { texto: novoTexto }).pipe(
-      map(c => ({ 
-        ...c, 
+      map(c => ({
+        ...c,
         _id: c._id || c.id,
         dataCriacao: new Date(c.dataCriacao),
         updatedAt: new Date(c.updatedAt)

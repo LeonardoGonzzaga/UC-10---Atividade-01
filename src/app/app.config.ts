@@ -2,6 +2,7 @@ import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZoneChang
 import { provideRouter } from '@angular/router';
 import { provideHttpClient } from '@angular/common/http';
 import { routes } from './app.routes';
+import { environment } from '../environments/environment';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -11,9 +12,7 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     {
       provide: 'BASE_API_URL',
-      useValue: isDevMode() 
-        ? 'http://localhost:3000/api' 
-        : 'https://uc-10-atividade-01.onrender.com/api'
+      useValue: environment.apiUrl 
     }
   ]
 };

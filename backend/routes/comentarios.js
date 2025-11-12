@@ -60,8 +60,6 @@ router.put('/update/:id', async (req, res) => {
     }
 });
 
-// Rota 4: DELETE /api/comentarios/:id
-// Deleta um comentário específico pelo seu ID
 router.delete('/:id', async (req, res) => {
     try {
         const resultado = await Comentario.findByIdAndDelete(req.params.id);
