@@ -12,7 +12,6 @@ router.post('/', async (req, res) => {
     }
 
     try {
-        // 1. Opcional: Verifica se o Jogo existe antes de salvar o comentário
         const jogoExiste = await Jogo.findById(jogoId);
         if (!jogoExiste) {
             return res.status(404).json({ message: 'Jogo associado não encontrado.' });
@@ -33,7 +32,7 @@ router.get('/:jogoId', async (req, res) => {
     try {
         // Encontra comentários pelo jogoId, ordenando do mais recente para o mais antigo
         const comentarios = await Comentario.find({ jogoId: req.params.jogoId })
-            .sort({ dataCriacao: -1 }); // -1 para ordem decrescente (mais recente primeiro)
+            .sort({ dataCriacao: -1 }); 
             
         res.json(comentarios);
     } catch (error) {
@@ -42,7 +41,7 @@ router.get('/:jogoId', async (req, res) => {
 });
 
 // Rota 3: PUT /api/comentarios/update/:id
-// Atualiza um comentário específico pelo seu ID (útil para edição)
+// Atualiza um comentário específico pelo seu ID
 router.put('/update/:id', async (req, res) => {
     try {
         const comentario = await Comentario.findById(req.params.id);

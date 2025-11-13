@@ -93,12 +93,10 @@ router.put('/:id', async (req, res) => {
         jogo.descricao = req.body.descricao || jogo.descricao;
         jogo.preco = (req.body.preco !== undefined) ? req.body.preco : jogo.preco;
         jogo.imagemUrl = req.body.imagemUrl || jogo.imagemUrl;
-
-    // Novos campos
         jogo.genero = req.body.genero || jogo.genero;
         jogo.publisher = req.body.publisher || jogo.publisher;
         jogo.desenvolvedora = req.body.desenvolvedora || jogo.desenvolvedora;
-    jogo.sobre = (req.body.sobre !== undefined) ? req.body.sobre : jogo.sobre;
+        jogo.sobre = (req.body.sobre !== undefined) ? req.body.sobre : jogo.sobre;
         jogo.requisitosMinimos = req.body.requisitosMinimos || jogo.requisitosMinimos;
         jogo.dataLancamento = req.body.dataLancamento ? new Date(req.body.dataLancamento) : jogo.dataLancamento;
         jogo.idiomas = Array.isArray(req.body.idiomas) ? req.body.idiomas : (req.body.idiomas ? [req.body.idiomas] : jogo.idiomas);

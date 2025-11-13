@@ -8,7 +8,6 @@ const app = express();
 // Middleware
 app.use(cors({
     origin: function(origin, callback) {
-        // Permitir requisições sem origem (como apps mobile ou Postman)
         if (!origin) return callback(null, true);
         
         // Lista de origens permitidas
@@ -44,12 +43,10 @@ app.use('/api/usuarios', require('./routes/usuarios'));
 app.use('/api/comentarios', require('./routes/comentarios'));
 
 const PORT = process.env.PORT || 3000;
-// Health check endpoint
 app.get('/health', (req, res) => res.json({ status: 'ok' }));
 
 app.listen(PORT, () => {
     console.log(`Servidor rodando na porta ${PORT}`);
 });
 
-// Export app for testing if needed
 module.exports = app;

@@ -23,8 +23,6 @@ router.post('/login', async (req, res) => {
             return res.status(401).json({ message: 'Email ou senha inválidos' });
         }
 
-        // Aqui você deve implementar uma comparação segura de senha
-        // Por enquanto, faremos uma comparação simples
         if (senha !== usuario.senha) {
             return res.status(401).json({ message: 'Email ou senha inválidos' });
         }
@@ -50,7 +48,7 @@ router.post('/register', async (req, res) => {
         const usuario = new Usuario({
             nome: req.body.nome,
             email: req.body.email,
-            senha: req.body.senha // Em produção, você deve hash a senha
+            senha: req.body.senha 
         });
 
         const novoUsuario = await usuario.save();
