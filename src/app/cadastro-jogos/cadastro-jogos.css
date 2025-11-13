@@ -1,21 +1,8 @@
-/* Cores baseadas no layout do cabeçalho */
-:root {
-    --color-primary: #85a9ff;
-    --color-secondary: #007bff;
-    --color-background: #f4f7f9;
-    --color-text: #333;
-    --color-white: #fff;
-    --color-success: #28a745;
-    --color-danger: #dc3545;
-    --color-border: #ddd;
-    --color-section-bg: #f8f9fa;
-}
-
 .cadastro-container {
     max-width: 800px;
     margin: 40px auto; /* Centraliza horizontalmente e adiciona margem vertical */
     padding: 30px;
-    background-color: var(--color-white);
+    background-color: #fff; /* cor-white */
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra suave */
     font-family: Arial, sans-serif;
@@ -23,7 +10,7 @@
 
 h2 {
     text-align: center;
-    color: var(--color-primary);
+    color: #000000; /* color-primary */
     margin-bottom: 30px;
     font-weight: 700;
 }
@@ -37,7 +24,7 @@ label {
     display: block;
     margin-bottom: 8px;
     font-weight: 600;
-    color: var(--color-text);
+    color: #333; /* color-text */
 }
 
 .form-control {
@@ -50,7 +37,7 @@ label {
 }
 
 .form-control:focus {
-    border-color: var(--color-primary);
+    border-color: #85a9ff; /* color-primary */
     box-shadow: 0 0 0 0.2rem rgba(133, 169, 255, 0.25);
     outline: none;
 }
@@ -60,8 +47,8 @@ label {
     display: block;
     width: 100%;
     padding: 12px 20px;
-    background-color: var(--color-secondary);
-    color: var(--color-white);
+    background-color: #007bff; 
+    color: #fff; 
     border: none;
     border-radius: 8px;
     font-size: 16px;
@@ -72,7 +59,7 @@ label {
 }
 
 .btn-cadastrar:hover:not([disabled]) {
-    background-color: #0056b3;
+    background-color: #0056b3; /
 }
 
 .btn-cadastrar[disabled] {
@@ -89,37 +76,37 @@ label {
     text-align: center;
     font-weight: 600;
     background-color: #12852d;
-    color: #ffffff;
+    color: #fff; 
 }
 
 /* Para mensagens de sucesso */
 .alerta.sucesso {
-    background-color: #12852d;
-    color: var(--color-success);
+    background-color: #28a745; 
+    color: #fff; 
     border: 1px solid #c3e6cb;
 }
 
 /* Para mensagens de erro (opcional, mas bom ter) */
 .alerta.erro {
     background-color: #f8d7da;
-    color: var(--color-danger);
+    color: #dc3545; 
     border: 1px solid #f5c6cb;
 }
 
 /* Estilização das seções do formulário */
 .form-section {
-    background-color: var(--color-section-bg);
-    border: 1px solid var(--color-border);
+    background-color: #f8f9fa; 
+    border: 1px solid #ddd; 
     border-radius: 8px;
     padding: 20px;
     margin-bottom: 25px;
 }
 
 .form-section h3 {
-    color: var(--color-secondary);
+    color: #007bff; 
     margin-bottom: 20px;
     font-size: 1.2em;
-    border-bottom: 2px solid var(--color-primary);
+    border-bottom: 2px solid #85a9ff; 
     padding-bottom: 10px;
 }
 
@@ -132,10 +119,10 @@ label {
 }
 
 .idioma-item {
-    background-color: var(--color-white);
+    background-color: #fff; 
     padding: 8px;
     border-radius: 4px;
-    border: 1px solid var(--color-border);
+    border: 1px solid #ddd; 
 }
 
 .idioma-item label {
@@ -156,10 +143,10 @@ label {
 }
 
 .requisito-item {
-    background-color: var(--color-white);
+    background-color: #fff; 
     padding: 10px;
     border-radius: 4px;
-    border: 1px solid var(--color-border);
+    border: 1px solid #ddd; 
 }
 
 /* Responsive: Ajustes para telas menores */
@@ -188,7 +175,6 @@ label {
     }
 }
 
-/* Rich text editor (simple) */
 .rte-toolbar {
     display:flex;
     gap:8px;

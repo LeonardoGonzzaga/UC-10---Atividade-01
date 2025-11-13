@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { Jogos } from '../models/jogos.models';       
-import { JogoService } from '../services/jogos.service'; 
+import { Jogos } from '../models/jogos.models';
+import { JogoService } from '../services/jogos.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -34,29 +34,8 @@ export class AttJogo implements OnInit {
   public editDataLancamento: string = '';
 
   // --- Propriedades para Edição ---
-  // Objeto que será vinculado ao formulário de edição
-    public jogoParaEditar: Jogos = new Jogos(
-      '',      // id
-      '',      // nome
-      '',      // descricao
-      0,       // preco
-      '',      // imagemUrl
-      '',      // genero
-      '',      // publisher
-      '',      // desenvolvedora
-      {        // requisitosMinimos
-        sistema: '',
-        processador: '',
-        memoria: '',
-        placaVideo: '',
-        armazenamento: ''
-      },
-      new Date(), // dataLancamento
-      [],      // idiomas
-      '',      // sobre
-      0,       // avaliacoesPositivas
-      0        // avaliacoesNegativas
-    );
+  // O objeto é inicializado usando a função helper.
+  public jogoParaEditar: Jogos;
   // Controla se estamos no modo "Lista" ou "Edição"
   public estaEditando: boolean = false;
 
@@ -65,11 +44,44 @@ export class AttJogo implements OnInit {
     private jogoService: JogoService,
     private authService: AuthService,
     private router: Router
-  ) { }
+  ) {
+    // Inicializa jogoParaEditar usando o novo método no construtor.
+    this.jogoParaEditar = this.criarNovoJogoVazio();
+  }
 
   ngOnInit(): void {
     this.carregarJogos();
   }
+
+  /**
+   * Cria e retorna um novo objeto Jogos com valores vazios.
+   * Isso centraliza a lógica de inicialização do objeto no início.
+   */
+  private criarNovoJogoVazio(): Jogos {
+    return new Jogos(
+      '', // id
+      '', // nome
+      '', // descricao
+      0,  // preco
+      '', // imagemUrl
+      '', // genero
+      '', // publisher
+      '', // desenvolvedora
+      { // requisitosMinimos
+        sistema: '',
+        processador: '',
+        memoria: '',
+        placaVideo: '',
+        armazenamento: ''
+      },
+      new Date(), // dataLancamento
+      [], // idiomas
+      '', // sobre
+      0,  // avaliacoesPositivas
+      0 // avaliacoesNegativas
+    );
+  }
+
 
   ngAfterViewInit(): void {
     // nothing immediate; editor content is set when iniciarEdicao is called
@@ -85,11 +97,11 @@ export class AttJogo implements OnInit {
    */
   public carregarJogos(): void {
     this.isLoading = true;
-    this.mensagem = ''; 
-    
+    this.mensagem = '';
+
     this.jogoService.getJogos().subscribe({
       next: (jogos: Jogos[]) => {
-        // Ordena por nome para manter uma ordem previsível (ids do Mongo são strings)
+        // Ordena por nome para manter uma ordem previsível
         this.listaJogos = jogos.sort((a, b) => a.nome.localeCompare(b.nome));
         this.isLoading = false;
       },
@@ -106,9 +118,8 @@ export class AttJogo implements OnInit {
    */
   public excluirJogo(jogo: Jogos): void {
     const nomeDoJogo = jogo.nome;
-  const idDoJogo = jogo.id;
+    const idDoJogo = jogo.id;
 
-    // A MENSAGEM DE CONFIRMAÇÃO AGORA USA O NOME DO JOGO
     if (!confirm(`Tem certeza que deseja excluir o jogo "${nomeDoJogo}" (ID: ${idDoJogo})?`)) {
       return;
     }
@@ -118,7 +129,7 @@ export class AttJogo implements OnInit {
         // A mensagem de sucesso também usa o nome
         this.mensagem = `Jogo "${nomeDoJogo}" excluído com sucesso!`;
         // Remove o jogo da lista local
-      this.listaJogos = this.listaJogos.filter(j => j.id !== idDoJogo);
+        this.listaJogos = this.listaJogos.filter(j => j.id !== idDoJogo);
       },
       error: (erro) => {
         this.mensagem = `Erro ao excluir o jogo "${nomeDoJogo}".`;
@@ -139,7 +150,6 @@ export class AttJogo implements OnInit {
     this.estaEditando = true;
     this.mensagem = `Editando: ${jogo.nome} (ID: ${jogo.id})`;
 
-    // Populate editor HTML after view updates
     setTimeout(() => {
       if (this.editor && this.editor.nativeElement) {
         this.editor.nativeElement.innerHTML = this.jogoParaEditar.sobre || '';
@@ -147,40 +157,13 @@ export class AttJogo implements OnInit {
     }, 0);
   }
 
-  /**
-   * Acionado pelo botão "Cancelar" no formulário de edição.
-   * Volta para a tela da lista.
-   */
   public cancelarEdicao(): void {
     this.estaEditando = false;
     this.mensagem = '';
-    // Limpa o objeto do formulário
-    this.jogoParaEditar = new Jogos(
-      '',      // id
-      '',      // nome
-      '',      // descricao
-      0,       // preco
-      '',      // imagemUrl
-      '',      // genero
-      '',      // publisher
-      '',      // desenvolvedora
-      {        // requisitosMinimos
-        sistema: '',
-        processador: '',
-        memoria: '',
-        placaVideo: '',
-        armazenamento: ''
-      },
-      new Date(), // dataLancamento
-      [],      // idiomas
-      '',      // sobre
-      0,       // avaliacoesPositivas
-      0        // avaliacoesNegativas
-    );
+    this.jogoParaEditar = this.criarNovoJogoVazio();
     this.idiomasSelecionados = [];
     this.editDataLancamento = '';
 
-    // clear editor
     setTimeout(() => {
       if (this.editor && this.editor.nativeElement) {
         this.editor.nativeElement.innerHTML = '';
@@ -200,7 +183,7 @@ export class AttJogo implements OnInit {
 
   /**
    * Acionado pelo botão "Salvar" no formulário de edição.
-   * Envia os dados atualizados (PUT) para o serviço.
+   * Envia os dados atualizados para o serviço.
    */
   public salvarAtualizacao(): void {
     if (!this.jogoParaEditar || !this.jogoParaEditar.id) {
@@ -212,7 +195,6 @@ export class AttJogo implements OnInit {
     this.jogoParaEditar.idiomas = [...this.idiomasSelecionados];
     this.jogoParaEditar.dataLancamento = this.editDataLancamento ? new Date(this.editDataLancamento) : this.jogoParaEditar.dataLancamento;
 
-    // Capture rich-text HTML from editor
     if (this.editor && this.editor.nativeElement) {
       this.jogoParaEditar.sobre = this.editor.nativeElement.innerHTML || '';
     }
@@ -226,9 +208,9 @@ export class AttJogo implements OnInit {
         }
 
         this.mensagem = `Jogo "${jogoAtualizado.nome}" atualizado com sucesso!`;
-        
+
         // 2. Volta para a lista
-        this.cancelarEdicao(); 
+        this.cancelarEdicao();
       },
       error: (erro) => {
         this.mensagem = 'Erro ao atualizar o jogo.';
@@ -244,7 +226,6 @@ export class AttJogo implements OnInit {
         this.editor.nativeElement.focus();
       }
     } catch (e) {
-      // Silently ignore unsupported format
     }
   }
 

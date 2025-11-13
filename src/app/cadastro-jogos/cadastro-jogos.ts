@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
-import { Jogos } from '../models/jogos.models';       
-import { JogoService } from '../services/jogos.service'; 
-import { FormsModule } from '@angular/forms'; 
+import { Jogos } from '../models/jogos.models';
+import { JogoService } from '../services/jogos.service';
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -16,7 +16,7 @@ export class CadastroJogos implements OnInit {
   public novoJogo: Jogos = this.criarNovoJogo();
   public mensagem: string = '';
   public erro: boolean = false;
-  
+
   public idiomasDisponiveis: string[] = [
     'Português (Brasil)',
     'Inglês',
@@ -30,7 +30,7 @@ export class CadastroJogos implements OnInit {
     'Chinês (Tradicional)',
     'Coreano'
   ];
-  
+
   public idiomasSelecionados: string[] = [];
 
   @ViewChild('editor') editor!: ElementRef<HTMLDivElement>;
@@ -42,7 +42,6 @@ export class CadastroJogos implements OnInit {
   }
 
   ngAfterViewInit(): void {
-    // Ensure editor content reflects the model after view init
     if (this.editor) {
       this.editor.nativeElement.innerHTML = this.novoJogo.sobre || '';
     }
@@ -51,12 +50,10 @@ export class CadastroJogos implements OnInit {
   public applyFormat(command: string, value?: string) {
     try {
       document.execCommand(command, false, value ?? undefined);
-      // Keep focus on editor after applying format
       if (this.editor && this.editor.nativeElement) {
         this.editor.nativeElement.focus();
       }
     } catch (e) {
-      // Silently ignore unsupported format
     }
   }
 
@@ -105,9 +102,7 @@ export class CadastroJogos implements OnInit {
   private resetarFormulario(): void {
     this.novoJogo = this.criarNovoJogo();
     this.idiomasSelecionados = [];
-    this.mensagem = '';
     this.erro = false;
-    // Clear editor if present (use setTimeout so it runs after change detection)
     setTimeout(() => {
       if (this.editor && this.editor.nativeElement) {
         this.editor.nativeElement.innerHTML = this.novoJogo.sobre || '';
@@ -116,27 +111,32 @@ export class CadastroJogos implements OnInit {
   }
 
   public cadastrarJogo(): void {
-    // Capture formatted HTML from editor into the model
-    if (this.editor && this.editor.nativeElement) {
-      this.novoJogo.sobre = this.editor.nativeElement.innerHTML || '';
-    }
-
-    const jogoParaEnviar = { 
-      ...this.novoJogo,
-      idiomas: this.idiomasSelecionados
-    };
-
-    this.jogoService.cadastrarJogo(jogoParaEnviar as Jogos).subscribe({
-      next: (resposta) => {
-        this.mensagem = `Jogo "${resposta.nome}" cadastrado com sucesso!`;
-        this.erro = false;
-        this.resetarFormulario();
-      },
-      error: (erro) => {
-        console.error('Erro ao cadastrar jogo:', erro);
-        this.mensagem = 'Erro ao cadastrar o jogo. Por favor, tente novamente.';
-        this.erro = true;
-      }
-    });
+  if (this.editor && this.editor.nativeElement) {
+    this.novoJogo.sobre = this.editor.nativeElement.innerHTML || '';
   }
+
+  const jogoParaEnviar = { 
+    ...this.novoJogo,
+    idiomas: this.idiomasSelecionados
+  };
+
+  this.jogoService.cadastrarJogo(jogoParaEnviar as Jogos).subscribe({
+    next: (resposta) => {
+      // 1. Define a mensagem de sucesso
+      this.mensagem = `Jogo "${resposta.nome}" cadastrado com sucesso! ID "${resposta.id}"`;
+      this.erro = false;
+      this.resetarFormulario(); 
+      // 2. Limpa a mensagem após 5 segundos para que o usuário possa ler
+      setTimeout(() => {
+        this.mensagem = '';
+      }, 5000); 
+
+    },
+    error: (erro) => {
+      console.error('Erro ao cadastrar jogo:', erro);
+      this.mensagem = 'Erro ao cadastrar o jogo. Por favor, tente novamente.';
+      this.erro = true;
+    }
+  });
+}
 }

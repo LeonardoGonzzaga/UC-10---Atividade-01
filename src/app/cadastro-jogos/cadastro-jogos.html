@@ -1,7 +1,7 @@
 <section class="cadastro-container">
     <h2>🎮 Cadastrar Novo Jogo</h2>
     
-    <form (ngSubmit)="cadastrarJogo()" #jogoForm="ngForm">
+    <form (ngSubmit)="cadastrarJogo(); $event.preventDefault()" #jogoForm="ngForm">
         <div class="form-section">
             <h3>Informações Básicas</h3>
             
@@ -30,7 +30,6 @@
             <div class="form-group">
                 <label for="sobre">Sobre este Jogo (informações adicionais):</label>
 
-                <!-- Simple rich-text toolbar -->
                 <div class="rte-toolbar">
                     <button type="button" class="rte-btn" (click)="applyFormat('bold')">B</button>
                     <button type="button" class="rte-btn" (click)="applyFormat('italic')"><i>i</i></button>
@@ -42,7 +41,6 @@
                     <button type="button" class="rte-btn" (click)="createLink()">Link</button>
                 </div>
 
-                <!-- Contenteditable editor -->
                 <div #editor id="sobre" class="rte-editor form-control" contenteditable="true" aria-label="Editor de texto para 'Sobre este Jogo'"></div>
             </div>
 
@@ -196,7 +194,7 @@
             </div>
         </div>
 
-        <button type="submit" class="btn-cadastrar" [disabled]="!jogoForm.form.valid">
+        <button type="submit" class="btn-cadastrar" [disabled]="!jogoForm.form.valid" [attr.title]="!jogoForm.form.valid ? 'Preencha todos os campos obrigatórios para cadastrar o jogo.': null">
             Cadastrar Jogo
         </button>
     </form>
